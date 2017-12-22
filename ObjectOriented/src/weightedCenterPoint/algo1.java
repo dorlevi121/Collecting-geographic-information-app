@@ -22,6 +22,12 @@ public class algo1 {
 			AVGALT+=filteredList.get(i).point.getAlt()*weight;
 
 		}
+		
+		writeToCSV(filteredList, path, check, AVGLAT, AVGLON, AVGALT, sumWeight);
+	}
+	
+	private static void writeToCSV(ArrayList<WiFi> filteredList, String path, int check, double AVGLAT, double AVGLON, double AVGALT, double sumWeight){
+		
 		PrintWriter pw = null;
 		try {
 
@@ -59,5 +65,7 @@ public class algo1 {
 		pw.close();
 		System.out.println("Router Point  file created successfuly in " + path);
 	}
+		}
+	
 
-}
+

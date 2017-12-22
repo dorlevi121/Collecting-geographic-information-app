@@ -31,10 +31,18 @@ public class main {
 		//kml.makeKML(writeListToCSVFile2(unionList,WriteFolder),WriteFolder);
 		
 	
-		System.out.println("Create a KML file Sorted by (1)Time, (2)GPS, (3)ID: or Create a csv file Sorted by MAC (4)   ");
+		System.out.println("Create a KML file Sorted by Time / GPS / ID press 1"
+				+ "\n"+ " Create a csv file Sorted by MAC press 2");
 		int option = Integer.parseInt(sc.nextLine());
 		switch (option) {
+		case 1: { 	
+			
+			System.out.println("Create a KML file Sorted by (1)Time, (2)GPS, (3)ID: or Create a csv file Sorted by MAC ?  (4)");
+			int optionKML = Integer.parseInt(sc.nextLine());
+			
+			switch (optionKML) {
 		case 1: { // filter by time
+		
 			System.out.println(
 					"Filter by time syntax:\nStart time: yyyy-MM-dd HH:mm:ss" + " \nEnd time: yyyy-MM-dd HH:mm:ss");
 
@@ -118,8 +126,18 @@ public class main {
 			System.out.println("Success!");
 			break;
 		}
-		case 4: {
-			System.out.println("Enter MAC:");
+		
+		}
+		}
+		case 2: {
+			System.out.println("Create a csv file Sorted by MAC press 1 or by MAC and signal press 2");
+			int optionMAC = Integer.parseInt(sc.nextLine());
+			
+			switch (optionMAC) {
+			case 1:
+			{
+				System.out.println("Enter MAC:");
+			
 			String MAC = sc.nextLine();
 			System.out.println("Enter number of scans");
 			int checks= sc.nextInt();
@@ -134,15 +152,50 @@ public class main {
 			//kml.makeKML(makeCSV.writeListToCSVFile(filteredList,WriteFolder),WriteFolder);
 			//makeCSV.writeListToCSVFile2(makeCSV.writeListToCSVFile(filteredList,WriteFolder), WriteFolder);
 			
-            //ec:8c:a2:08:94:1c
+	        //ec:8c:a2:08:94:1c
 			//1c:b9:c4:16:28:ec
 			System.out.println("Success!");
 			break;
-		}
-		}
+			}
+			
+			case 2: {
+				System.out.println("Enter number of MAC:");
+				int checks= sc.nextInt();
+				String[] MACaddresses = new String[checks];
+				String[] signals = new String[checks];
+				for (int i = 0; i < checks; i++) {
+					System.out.println("Enter MAC:");
+					String MAC = sc.nextLine();
+					MACaddresses[i]=MAC;
+					System.out.println("Enter signal:");
+					String signal = sc.nextLine();
+					signals[i]=MAC;
+				}
+				for (int i = 0; i < MACaddresses.length; i++) {
+					filter = new FilterMAC(MACaddresses[i]);
+					ArrayList<WiFi> filteredList = filterList.filterList(unionList,filter);
+				}
 
-	}
 
+			//Sorting the filteredList by signal (WiFi is implementing Comparable)
+			//Collections.sort(filteredList);
+			//algo1.avgGPSPoint(filteredList,checks,WriteFolder);
+
+			//Wirte csv and kml file
+			//kml.makeKML(makeCSV.writeListToCSVFile(filteredList,WriteFolder),WriteFolder);
+			//makeCSV.writeListToCSVFile2(makeCSV.writeListToCSVFile(filteredList,WriteFolder), WriteFolder);
+			
+	        //ec:8c:a2:08:94:1c
+			//1c:b9:c4:16:28:ec
+			System.out.println("Success!");
+			break;
+			}
+			}
+		}
+			}
+			}
+
+	
 	public static void main(String[] args) {
 		run();
 	}
