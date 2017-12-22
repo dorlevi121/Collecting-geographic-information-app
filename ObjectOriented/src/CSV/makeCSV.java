@@ -15,7 +15,6 @@ import Wifi.WiFi;
 
 public class makeCSV {
 
-	static int fileID = 1;
 	/**
 	 * 
 	 * @param directoryName
@@ -133,7 +132,7 @@ public class makeCSV {
 		try {
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			Date date = new Date();
-			pw = new PrintWriter(new File(writeFolder + "/sortedCSV_"+(fileID++ )+".csv"));
+			pw = new PrintWriter(new File(writeFolder + "/sortedCSV_"+".csv"));
 		} catch (FileNotFoundException e) {
 
 			e.printStackTrace();

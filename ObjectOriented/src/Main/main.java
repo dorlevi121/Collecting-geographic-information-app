@@ -122,6 +122,7 @@ public class main {
 
 			//writeListToCSVFile(filteredList,WriteFolder);
 			kml.makeKML(makeCSV.writeListToCSVFile(filteredList,WriteFolder),WriteFolder);
+			makeCSV.writeListToCSVFile2(filteredList,WriteFolder);
             //SM-G935F
 			System.out.println("Success!");
 			break;
@@ -130,8 +131,12 @@ public class main {
 		}
 		}
 		case 2: {
-			System.out.println("Create a csv file Sorted by MAC press 1 or by MAC and signal press 2");
+			System.out.println("To create a csv file Sorted by MAC press 1 or by MAC and signal press 2");
+			System.out.println("to exit program press 0");
 			int optionMAC = Integer.parseInt(sc.nextLine());
+			if(optionMAC==0){
+				System.out.println("The program closed");
+				break;}
 			
 			switch (optionMAC) {
 			case 1:
