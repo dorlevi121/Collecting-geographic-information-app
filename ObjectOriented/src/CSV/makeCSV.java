@@ -23,8 +23,7 @@ public class makeCSV {
 
 	/**
 	 * 
-	 * @param directoryName
-	 *            directory to search csv files
+	 * @param directoryName directory to search csv files     
 	 * @return list with all the csv files paths
 	 */
 	public static ArrayList<String> getAllcsvFileListFromFolder(String directoryName) {
@@ -111,10 +110,10 @@ public class makeCSV {
 	}
 
 	/**
-	* This function unifies all CSV files to the ArrayList
-	* @param csvReadPaths ArrayList of String with all the csv's path
+	* This function write the ArrayList to CSV file by the format(ColumnNamesList)
+	* @param unionList ArrayList with all the wifi info
 	* @param writeFolder Address save the file
-	* @return ArrayList with all wifi list
+	* @return ArrayList with all wifi list by the format(ColumnNamesList)
 	*/
 	
 public static ArrayList<WiFi> writeListToCSVFile(ArrayList<WiFi> unionList, String writeFolder) {
@@ -142,6 +141,12 @@ public static ArrayList<WiFi> writeListToCSVFile(ArrayList<WiFi> unionList, Stri
 		return GetUnionListSorted;
 	}
 
+
+/**
+* This function write the ArrayList to CSV file by the format(ColumnNamesList)
+* @param unionList ArrayList with all the wifi info
+* @param writeFolder Address save the file
+*/
 
 	public static void writeListToCSVFile2(ArrayList<WiFi> unionList, String writeFolder) {
 		ArrayList<WiFi> best10Wifi = new ArrayList<WiFi>();
