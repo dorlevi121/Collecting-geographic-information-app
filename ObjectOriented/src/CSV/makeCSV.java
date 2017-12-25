@@ -22,7 +22,7 @@ import Wifi.WiFi;
 public class makeCSV {
 
 	/**
-	 * 
+	 * This function make list with all the CSV path
 	 * @param directoryName directory to search csv files     
 	 * @return list with all the csv files paths
 	 */

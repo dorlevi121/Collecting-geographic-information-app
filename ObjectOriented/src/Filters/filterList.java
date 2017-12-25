@@ -3,7 +3,10 @@ package Filters;
 import java.util.ArrayList;
 
 import Wifi.WiFi;
-
+/**
+* This class compare between 2 wifi by filter
+* @author Dor Levi, Yarden Mizrahi
+*/
 public class filterList {
 
 
