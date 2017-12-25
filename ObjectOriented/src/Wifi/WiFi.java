@@ -6,6 +6,10 @@ import java.util.Date;
 
 import GPSPoints.GPSPoint;
 
+/**
+* This class make object wifi
+* @author Dor Levi, Yarden Mizrahi
+*/
 
 public class WiFi implements Comparable<WiFi> {
 	public GPSPoint point;
@@ -15,6 +19,11 @@ public class WiFi implements Comparable<WiFi> {
 	private double freq, signal;
 	private String modelID;
 
+	
+	/**
+	 * wifi builder 
+	 * @param SSID - Wifi name , MAC - Mac address   
+	 */
 	public WiFi(String SSID, String MAC, double freq, double signal, double LAT, double LON, double ALT, Date Time,String modelID) {
 		this.signal = signal;
 		this.MAC = MAC;
@@ -24,6 +33,11 @@ public class WiFi implements Comparable<WiFi> {
 		this.Time = new Date(Time.getTime());
 		this.modelID = modelID;
 	}
+	
+	/**
+	 * wifi builder 
+	 * @param SSID - Wifi name , MAC - Mac address   
+	 */
 	public WiFi(String SSID, String MAC, double freq, double signal, GPSPoint point, Date Time,String modelID) {
 		this.signal = signal;
 		this.MAC = MAC;
@@ -34,11 +48,13 @@ public class WiFi implements Comparable<WiFi> {
 		this.modelID = modelID;
 	}
 
-	
+	/**
+	 * wifi copy builder 
+	 * @param SSID - Wifi name , MAC - Mac address   
+	 */
 	public WiFi(WiFi copy) {
 		this(copy.SSID,copy.MAC, copy.freq, copy.signal, copy.point, copy.Time, copy.modelID);
 	}
-
 
 
 	public String getModelID() {
@@ -71,6 +87,12 @@ public class WiFi implements Comparable<WiFi> {
 		return ans;
 	}
 
+	/**
+	* This function compare between 2 wifi by signal
+	* @param other wifi object
+	* @return 0 if wifi's signal more stringer
+	* @return 1 if other's signal more stringer
+	*/
 	@Override
 	public int compareTo(WiFi other) {
 		if (this.signal < other.signal)
@@ -80,18 +102,30 @@ public class WiFi implements Comparable<WiFi> {
 		return 0;
 	}
 
-
+	/**
+	 * This function print by ans format for writeListToCSVFile2 function  
+	 * @return ans Time, ID, GPSPoint
+	 */
 	public String printSort(){
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String ans = sdf.format(Time)+"," + modelID + "," +point.getLat() + ","+ point.getLon() + ","+ point.getAlt() ;
 		return ans;
 	}
 
+	/**
+	 * This function print by ans format for writeListToCSVFile2 function  
+	 * @return ans SSID, MAC, freq, signal
+	 */
 	public String printSort2(){
 		String ans = "," + SSID + "," + MAC + "," + freq + "," + signal ;
 		return ans;
 	}
 
+	/**
+	* This function compare between 2 wifi by GPSPoint
+	* @param alt, lon, lat GPS points
+	* @return true if the GPS point are same to the other wifi
+	*/
 	public boolean equalsGPS(double alt, double lon, double lat) {
 		boolean ans = false;
 		if(alt==this.point.getAlt() && lon==this.point.getLon() && lat==this.point.getLat())
@@ -100,6 +134,11 @@ public class WiFi implements Comparable<WiFi> {
 		return ans;
 	}
 
+	/**
+	* This function compare between 2 wifi by ID
+	* @param ID id address
+	* @return true if the ID same to the other wifi
+	*/
 	public boolean equalsID(String ID) {
 		boolean ans = false;
 		if(this.modelID.equals(ID))
@@ -108,6 +147,11 @@ public class WiFi implements Comparable<WiFi> {
 		return ans;
 	}
 
+	/**
+	* This function compare between 2 wifi by time
+	* @param timeid address
+	* @return true if the time same to the other wifi
+	*/
 	public boolean equalsTime(Date time) {
 		boolean ans = false;
 		if(this.Time.equals(time))
@@ -116,6 +160,11 @@ public class WiFi implements Comparable<WiFi> {
 		return ans;
 	}
 
+	/**
+	* This function get wifi list and return 10 wifi by stronger signal
+	* @param list wifi list with same time, id and GPSPoint
+	* @return ans String with 10 stronger wifi with info
+	*/
 	public static String printWiFiList(ArrayList<WiFi> list){
 		Collections.sort(list);
 		int count =0;
