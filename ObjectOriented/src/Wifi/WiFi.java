@@ -33,12 +33,13 @@ public class WiFi implements Comparable<WiFi> {
 		this.Time = new Date(Time.getTime());
 		this.modelID = modelID;
 	}
+
 	
 	public WiFi(WiFi copy) {
 		this(copy.SSID,copy.MAC, copy.freq, copy.signal, copy.point, copy.Time, copy.modelID);
 	}
 
-	
+
 
 	public String getModelID() {
 		return new String(modelID);
@@ -52,7 +53,7 @@ public class WiFi implements Comparable<WiFi> {
 		return freq;
 	}
 
-	
+
 	public String getSSID() {
 		return new String(SSID);
 	}
@@ -78,56 +79,57 @@ public class WiFi implements Comparable<WiFi> {
 			return -1;
 		return 0;
 	}
-	
-	
+
+
 	public String printSort(){
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String ans = sdf.format(Time)+"," + modelID + "," +point.getLat() + ","+ point.getLon() + ","+ point.getAlt() ;
 		return ans;
 	}
-	
+
 	public String printSort2(){
 		String ans = "," + SSID + "," + MAC + "," + freq + "," + signal ;
 		return ans;
 	}
-	
+
 	public boolean equalsGPS(double alt, double lon, double lat) {
 		boolean ans = false;
 		if(alt==this.point.getAlt() && lon==this.point.getLon() && lat==this.point.getLat())
 			ans = true;
-		
+
 		return ans;
 	}
-	
+
 	public boolean equalsID(String ID) {
 		boolean ans = false;
 		if(this.modelID.equals(ID))
 			ans = true;
-		
+
 		return ans;
 	}
-	
+
 	public boolean equalsTime(Date time) {
 		boolean ans = false;
 		if(this.Time.equals(time))
 			ans = true;
-		
+
 		return ans;
 	}
-	
+
 	public static String printWiFiList(ArrayList<WiFi> list){
 		Collections.sort(list);
 		int count =0;
-	        WiFi  wifi = new WiFi(list.get(0));
+		WiFi  wifi = new WiFi(list.get(0));
 		String ans = wifi.printSort() + "," + Math.min(10, list.size());
 		for (WiFi wifi2 : list){
 			if(count==10)
 				return ans;
 			else{
-			ans += wifi2.printSort2();
-			count++;
+				ans += wifi2.printSort2();
+				count++;
 			}
 		}
 		return ans;
 	}
+
 }

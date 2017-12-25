@@ -1,6 +1,7 @@
 package Main;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Scanner;
 
 import CSV.makeCSV;
@@ -13,6 +14,7 @@ import Filters.FilterTime;
 import Kml.kml;
 import Wifi.WiFi;
 import weightedCenterPoint.algo1;
+import weightedCenterPoint.algo2;
 
 public class main {
 
@@ -167,14 +169,16 @@ public class main {
 				System.out.println("Enter number of MAC:");
 				int checks= sc.nextInt();
 				String[] MACaddresses = new String[checks];
-				String[] signals = new String[checks];
+				double[] signals = new double[checks];
+			
+				
 				for (int i = 0; i < checks; i++) {
 					System.out.println("Enter MAC:");
 					String MAC = sc.nextLine();
 					MACaddresses[i]=MAC;
 					System.out.println("Enter signal:");
-					String signal = sc.nextLine();
-					signals[i]=MAC;
+					double signal = sc.nextDouble();
+					signals[i]=signal;
 				}
 				for (int i = 0; i < MACaddresses.length; i++) {
 					filter = new FilterMAC(MACaddresses[i]);
@@ -202,7 +206,7 @@ public class main {
 
 	
 	public static void main(String[] args) {
-		run();
-	}
+	run();
 
+}
 }

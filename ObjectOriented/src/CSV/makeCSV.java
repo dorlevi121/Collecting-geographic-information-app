@@ -13,6 +13,12 @@ import java.util.Date;
 import GPSPoints.GPSPoint;
 import Wifi.WiFi;
 
+/**
+* This class unifies the CSV files and prints them into an ArrayList
+* @author Dor Levi, Yarden Mizrahi
+*/
+
+
 public class makeCSV {
 
 	/**
@@ -53,6 +59,11 @@ public class makeCSV {
 
 	}
 
+	/**
+	* This function unifies all CSV files to the ArrayList
+	* @param csvReadPaths ArrayList of String with all the csv's path
+	* @return ArrayList with all wifi list
+	*/
 
 	public static ArrayList<WiFi> readFilesAndAddToUnionList(ArrayList<String> csvReadPaths) {
 		ArrayList<WiFi> unionList = new ArrayList<WiFi>();
@@ -99,8 +110,14 @@ public class makeCSV {
 		return unionList;
 	}
 
-
-	public static ArrayList<WiFi> writeListToCSVFile(ArrayList<WiFi> unionList, String writeFolder) {
+	/**
+	* This function unifies all CSV files to the ArrayList
+	* @param csvReadPaths ArrayList of String with all the csv's path
+	* @param writeFolder Address save the file
+	* @return ArrayList with all wifi list
+	*/
+	
+public static ArrayList<WiFi> writeListToCSVFile(ArrayList<WiFi> unionList, String writeFolder) {
 		ArrayList<WiFi> GetUnionListSorted = new ArrayList<WiFi>();
 		PrintWriter pw = null;
 		try {
