@@ -10,13 +10,17 @@ import Wifi.WiFi;
 import de.micromata.opengis.kml.v_2_2_0.Document;
 import de.micromata.opengis.kml.v_2_2_0.Kml;
 import de.micromata.opengis.kml.v_2_2_0.TimeStamp;
+
 /**
- *responsible of writing the final kml file 
- */
+* This class responsible of writing the final kml file 
+* @author Dor Levi, Yarden Mizrahi
+*/
+
 public class kml {
 /**
  * creating the kml and sending it to directory
- * @param toDisplay
+ * @param list ArrayList of wifi
+ * @param writeFolder Address save the file
  */
 	public static void makeKML(ArrayList<WiFi> list , String writeFolder) {
 		Kml kml = new Kml();
