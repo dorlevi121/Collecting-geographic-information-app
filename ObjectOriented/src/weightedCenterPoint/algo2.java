@@ -16,20 +16,36 @@ import Filters.filterList;
 import GPSPoints.GPSPoint;
 import Wifi.WiFi;
 
-public class algo2 {
-	
-	public static ArrayList<WiFi> makeLocation(String[] MAC, double[] signal, ArrayList<WiFi> unionList){
-		Filter filter = null;
-		ArrayList<WiFi> allMAC = new ArrayList<WiFi>();
-		double diff=0;
-		for (int i = 0; i < MAC.length; i++) {
-			filter = new FilterMAC(MAC[i]);
-			ArrayList<WiFi> filteredList = filterList.filterList(unionList,filter);
-			allMAC.addAll(filteredList);
-		}
-		return allMAC;
+public class algo2 implements Comparable<algo2>{
+
+	private String MAC;
+	private double signal;
+	private String modelID;
+
+	public algo2(String mac, double Signal1,String ID) {
+		this.MAC=mac;
+		this.signal= Signal1;
+		this.modelID=ID;
 	}
-	
+
+	@Override
+	public int compareTo(algo2 o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public String getMAC() {
+		return MAC;
+	}
+
+	public double getSignal() {
+		return signal;
+	}
+
+	public String getModelID() {
+		return modelID;
+	}
+
 
 
 }
