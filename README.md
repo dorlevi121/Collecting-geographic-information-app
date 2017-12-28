@@ -1,6 +1,5 @@
 # Collecting-geographic-information-app
-## CSV to KML converter
-## location detection
+## CSV to KML converter and location detection
 
 This program collects all the csv files from WigleWifi in a specified folder and creates a kml file after filtering the data.
 
