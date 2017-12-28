@@ -58,12 +58,13 @@ public class makeCSV {
 
 	}
 
+	
+	
 	/**
 	* This function unifies all CSV files to the ArrayList
 	* @param csvReadPaths ArrayList of String with all the csv's path
 	* @return ArrayList with all wifi list
 	*/
-
 	public static ArrayList<WiFi> readFilesAndAddToUnionList(ArrayList<String> csvReadPaths) {
 		ArrayList<WiFi> unionList = new ArrayList<WiFi>();
 		for (String csvPath : csvReadPaths) {
@@ -109,13 +110,14 @@ public class makeCSV {
 		return unionList;
 	}
 
+	
+	
 	/**
 	* This function write the ArrayList to CSV file by the format(ColumnNamesList)
 	* @param unionList ArrayList with all the wifi info
 	* @param writeFolder Address save the file
 	* @return ArrayList with all wifi list by the format(ColumnNamesList)
-	*/
-	
+	*/	
 public static ArrayList<WiFi> writeListToCSVFile(ArrayList<WiFi> unionList, String writeFolder) {
 		ArrayList<WiFi> GetUnionListSorted = new ArrayList<WiFi>();
 		PrintWriter pw = null;
@@ -142,12 +144,13 @@ public static ArrayList<WiFi> writeListToCSVFile(ArrayList<WiFi> unionList, Stri
 	}
 
 
+
+
 /**
 * This function write the ArrayList to CSV file by the format(ColumnNamesList)
 * @param unionList ArrayList with all the wifi info
 * @param writeFolder Address save the file
 */
-
 	public static void writeListToCSVFile2(ArrayList<WiFi> unionList, String writeFolder) {
 		ArrayList<WiFi> best10Wifi = new ArrayList<WiFi>();
 		PrintWriter pw = null;

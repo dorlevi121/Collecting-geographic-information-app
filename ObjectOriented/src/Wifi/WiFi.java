@@ -10,8 +10,9 @@ import GPSPoints.GPSPoint;
 * This class make object wifi
 * @author Dor Levi, Yarden Mizrahi
 */
-
-public class WiFi implements Comparable<WiFi> {
+	public class WiFi implements Comparable<WiFi> {
+		
+		
 	public GPSPoint point;
 	private Date Time;
 	private String SSID;
@@ -34,6 +35,7 @@ public class WiFi implements Comparable<WiFi> {
 		this.modelID = modelID;
 	}
 	
+	
 	/**
 	 * wifi builder 
 	 * @param SSID - Wifi name , MAC - Mac address   
@@ -48,6 +50,7 @@ public class WiFi implements Comparable<WiFi> {
 		this.modelID = modelID;
 	}
 
+	
 	/**
 	 * wifi copy builder 
 	 * @param SSID - Wifi name , MAC - Mac address   
@@ -61,10 +64,12 @@ public class WiFi implements Comparable<WiFi> {
 		return new String(modelID);
 	}
 
+	
 	public Date getTime() {
 		return new Date(Time.getTime());
 	}
 
+	
 	public double getFreq() {
 		return freq;
 	}
@@ -74,19 +79,24 @@ public class WiFi implements Comparable<WiFi> {
 		return new String(SSID);
 	}
 
+	
 	public String getMAC() {
 		return new String(MAC);
 	}
 
+	
 	public double getSignal() {
 		return signal;
 	}
+	
+	
 	public String printUnion(){
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String ans = MAC +","+SSID+","+sdf.format(Time)+","+ freq+ ","+signal+"," + point.getLat() + ","+ point.getLon() + ","+ point.getAlt()+"," + modelID;
 		return ans;
 	}
 
+	
 	/**
 	* This function compare between 2 wifi by signal
 	* @param other wifi object
@@ -102,6 +112,7 @@ public class WiFi implements Comparable<WiFi> {
 		return 0;
 	}
 
+	
 	/**
 	 * This function print by ans format for writeListToCSVFile2 function  
 	 * @return ans Time, ID, GPSPoint
@@ -112,6 +123,7 @@ public class WiFi implements Comparable<WiFi> {
 		return ans;
 	}
 
+	
 	/**
 	 * This function print by ans format for writeListToCSVFile2 function  
 	 * @return ans SSID, MAC, freq, signal
@@ -121,6 +133,7 @@ public class WiFi implements Comparable<WiFi> {
 		return ans;
 	}
 
+	
 	/**
 	* This function compare between 2 wifi by GPSPoint
 	* @param alt, lon, lat GPS points
@@ -134,6 +147,7 @@ public class WiFi implements Comparable<WiFi> {
 		return ans;
 	}
 
+	
 	/**
 	* This function compare between 2 wifi by ID
 	* @param ID id address
@@ -147,6 +161,7 @@ public class WiFi implements Comparable<WiFi> {
 		return ans;
 	}
 
+	
 	/**
 	* This function compare between 2 wifi by time
 	* @param timeid address
@@ -160,6 +175,7 @@ public class WiFi implements Comparable<WiFi> {
 		return ans;
 	}
 
+	
 	/**
 	* This function get wifi list and return 10 wifi by stronger signal
 	* @param list wifi list with same time, id and GPSPoint
