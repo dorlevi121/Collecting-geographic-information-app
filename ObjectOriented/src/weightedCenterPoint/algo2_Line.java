@@ -4,7 +4,7 @@ import java.util.Date;
 
 import GPSPoints.GPSPoint;
 
-public class algo2_Line{
+public class algo2_Line{ 
 	private int NumberOFNetwork;
 	 algo2[] algo2Line;
 	public algo2 network;
