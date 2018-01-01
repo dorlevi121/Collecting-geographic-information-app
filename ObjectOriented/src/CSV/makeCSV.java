@@ -151,7 +151,7 @@ public static ArrayList<WiFi> writeListToCSVFile(ArrayList<WiFi> unionList, Stri
 * @param unionList ArrayList with all the wifi info
 * @param writeFolder Address save the file
 */
-	public static void writeListToCSVFile2(ArrayList<WiFi> unionList, String writeFolder) {
+	public static String writeListToCSVFile2(ArrayList<WiFi> unionList, String writeFolder) {
 		ArrayList<WiFi> best10Wifi = new ArrayList<WiFi>();
 		PrintWriter pw = null;
 		try {
@@ -191,6 +191,10 @@ public static ArrayList<WiFi> writeListToCSVFile(ArrayList<WiFi> unionList, Stri
 		pw.write(builder.toString());
 		pw.close();
 		System.out.println("All wifi file created successfuly in " + writeFolder);
+		
+		String print = "All wifi file created successfuly in " + writeFolder;
+		
+		return print;
 	}
 
 
