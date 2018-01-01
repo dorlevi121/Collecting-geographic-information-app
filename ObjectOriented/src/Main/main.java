@@ -14,7 +14,6 @@ import Filters.FilterTime;
 import Kml.kml;
 import Wifi.WiFi;
 import weightedCenterPoint.algo1;
-import weightedCenterPoint.algo2;
 
 public class main {
 

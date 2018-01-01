@@ -9,7 +9,6 @@ import java.util.List;
  */
 
 import GPSPoints.GPSPoint;
-import javafx.geometry.Point3D;
 public class Line_Algo2 {
 	private Date time;
 	private String modelID;

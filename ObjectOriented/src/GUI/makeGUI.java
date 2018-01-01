@@ -21,7 +21,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
-public class fd extends JFrame implements ActionListener{
+public class makeGUI extends JFrame implements ActionListener{
 
 	private JFrame frame;
 	private JTextField textField;
@@ -34,7 +34,7 @@ public class fd extends JFrame implements ActionListener{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					fd window = new fd();
+					makeGUI window = new makeGUI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +46,7 @@ public class fd extends JFrame implements ActionListener{
 	/**
 	 * Create the application.
 	 */
-	public fd() {
+	public makeGUI() {
 		initialize();
 	}
 
