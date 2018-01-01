@@ -103,8 +103,8 @@ public class Algo_2Function {
 			FileReader fr = new FileReader(fileName);
 			BufferedReader br = new BufferedReader(fr);
 			String line="";
+			String[] str = line.split(",");
 			while ((line = br.readLine()) != null) {
-				String[] str = line.split(",");
 				List<algo2Network> net = new ArrayList<algo2Network>();
 				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm a");//12/05/17 11:48 AM
 				Date time = sdf.parse(str[0]);
