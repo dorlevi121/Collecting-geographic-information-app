@@ -135,7 +135,6 @@ public class makeGUI extends JFrame implements ActionListener{
 		csvButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				wifiList =  makeCSV.readFilesAndAddToUnionList(names);
-				//makeCSV.writeListToCSVFile2(wifiList, path);
 
 			}
 		});

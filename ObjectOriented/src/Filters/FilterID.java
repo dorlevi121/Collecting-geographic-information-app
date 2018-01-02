@@ -16,7 +16,10 @@ public class FilterID  implements Filter{
 		*/
 		@Override
 		public boolean isBelong(WiFi wifi) {
-			return ID.equals(wifi.getModelID());
+			if(ID.equals(wifi.getModelID()))
+				return true;
+			
+			return false;
 		}
 		
 	
