@@ -47,6 +47,7 @@ public class kml {
 			System.err.print("Error reading file\n" + ex);
 			System.exit(2);
 		}
+		System.out.println("kml file created successfuly in " + writeFolder);
 	}
 	private static String convertTimeFormat(String oldTimeFormat) {
 		String[] dateTime = oldTimeFormat.split(" ");

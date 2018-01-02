@@ -157,8 +157,9 @@ public static ArrayList<WiFi> writeListToCSVFile(ArrayList<WiFi> unionList, Stri
 		try {
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			Date date = new Date();
-			pw = new PrintWriter(new File(writeFolder + "/sortedCSV_"+".csv"));
-		} catch (FileNotFoundException e) {
+			pw = new PrintWriter(new File(writeFolder + "/SortedCSV_"+".csv"));
+		}
+		catch (FileNotFoundException e) {
 
 			e.printStackTrace();
 		}
