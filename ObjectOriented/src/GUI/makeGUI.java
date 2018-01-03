@@ -288,7 +288,7 @@ public class makeGUI extends JFrame implements ActionListener{
 				//User choose filter by GPS
 				if(gpsBox.isSelected()==true && csvButton.isSelected()==true && !kmlButton.isSelected()==true
 						&& !idBox.isSelected() && !timeBox.isSelected()){
-
+					
 					filter = new FilterGPS(StartLon, StartLat, EndLon,  EndLat);
 					ArrayList<WiFi> filteredList = filterList.filterList(wifiList,filter);
 					//Sorting the filteredList by signal (WiFi is implementing Comparable)
@@ -558,6 +558,7 @@ public class makeGUI extends JFrame implements ActionListener{
 		//algo 2:
 		algo2Box.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				btnBrowserFile.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
@@ -583,7 +584,7 @@ public class makeGUI extends JFrame implements ActionListener{
 		});
 
 		
-		///////////////////////////////////////////////
+		////////////////////////// About ////////////////////////////
 		
 		mntmAbout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -618,13 +619,16 @@ public class makeGUI extends JFrame implements ActionListener{
 
 		gpsBox = new JCheckBox("GPS");
 		gpsBox.setFont(new Font("Arial", Font.PLAIN, 11));
-
+		gpsBox.setToolTipText("lat: 32.xxxxxx || lon: 35.xxxxxx");
+		
 		timeBox = new JCheckBox("Time");
 		timeBox.setFont(new Font("Arial", Font.PLAIN, 11));
-
+		timeBox.setToolTipText("Start time: yyyy-MM-dd HH:mm:ss" + " || End time: yyyy-MM-dd HH:mm:ss");
+		
 		idBox = new JCheckBox("ID");
 		idBox.setFont(new Font("Arial", Font.PLAIN, 11));
-
+		idBox.setToolTipText("Enter ID");
+		
 		btnRun = new JButton("Run");
 		btnRun.setFont(new Font("Arial", Font.PLAIN, 11));
 
