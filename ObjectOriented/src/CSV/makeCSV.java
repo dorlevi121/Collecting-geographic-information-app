@@ -67,6 +67,7 @@ public class makeCSV {
 	*/
 	public static ArrayList<WiFi> readFilesAndAddToUnionList(ArrayList<String> csvReadPaths) {
 		ArrayList<WiFi> unionList = new ArrayList<WiFi>();
+		int numOfWifi=0;
 		for (String csvPath : csvReadPaths) {
 			try {
 				FileReader Fr = new FileReader(csvPath);
@@ -97,6 +98,7 @@ public class makeCSV {
 						String SSID = arr[1], MAC = arr[0];
 						double freq = Double.parseDouble(arr[4]), signal = Double.parseDouble(arr[5]);
 						WiFi wf = new WiFi(SSID, MAC, freq, signal, wifiPoint, time, id);
+						wf.setNumOfWifi(numOfWifi++);
 						unionList.add(wf);
 					}
 					Line = BR.readLine(); // next line

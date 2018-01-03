@@ -2,12 +2,15 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.FileDialog;
+
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import CSV.makeCSV;
 import Filters.Filter;
 import Filters.FilterGPS;
 import Filters.FilterID;
+import Filters.FilterMAC;
 import Filters.FilterTime;
 import Filters.filterList;
 import Kml.kml;
@@ -27,18 +30,35 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.UIManager;
 import javax.swing.JCheckBox;
 import javax.swing.JTextPane;
 import java.awt.SystemColor;
 import javax.swing.JRadioButton;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import java.awt.Font;
+import javax.swing.JSeparator;
+import java.awt.Panel;
+import javax.swing.BoxLayout;
+import java.awt.FlowLayout;
+import net.miginfocom.swing.MigLayout;
+import weightedCenterPoint.algo1;
+
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Component;
+import javax.swing.JTextArea;
+import javax.swing.JSlider;
+import java.awt.Choice;
+import javax.swing.SwingConstants;
 
 public class makeGUI extends JFrame implements ActionListener{
 
-	private String path, startTime, endTime, IDinfo;
-	private JFrame frame;
+	private String path, startTime, endTime, IDinfo, MAC;
+	private JFrame frmCollectinggeographicInformationApp;
 	private double StartLon,StartLat,EndLat,EndLon;
-	private JButton btnLoadCsvFolder;
 	private ArrayList<WiFi> wifiList;
 	private ArrayList<String> names;
 	private JCheckBox gpsBox;
@@ -46,7 +66,6 @@ public class makeGUI extends JFrame implements ActionListener{
 	private JCheckBox idBox;
 	private JPanel panel;
 	private JButton btnRun;
-	private JButton btnChooseCsvFile;
 	private JTextField textField_1;
 	private JTextPane textPane_1;
 	private JTextField textField_2;
@@ -57,7 +76,6 @@ public class makeGUI extends JFrame implements ActionListener{
 	private JTextPane textPane;
 	private JRadioButton kmlButton;
 	private JRadioButton csvButton;
-	private JButton Delete;
 	private JTextPane whiteTextBox;
 	private JTextPane txtpnEndTime;
 	private JTextPane txtpnStartTime;
@@ -65,17 +83,33 @@ public class makeGUI extends JFrame implements ActionListener{
 	private JTextField endTimeBox;
 	private JTextPane txtpnId;
 	private JTextField ID;
+	private JMenuBar menuBar;
+	private JMenu mnFile;
+	private JMenuItem mntmFolder;
+	private JMenu mnEdit;
+	private JMenuItem mntmDeleteData;
+	private JMenuItem mntmNoFilter;
+	private JMenuItem mntmFile_1;
+	private JSeparator separator;
+	private JSeparator separator_1;
+	private Panel panel_2;
+	private JRadioButton algo1Box;
+	private JTextPane txtpnMacAddress;
+	private JTextField textField;
+	private JTextField textField_5;
+	private JSlider slider;
+	private JPanel panel_3;
 
 	/**
 	 * Launch the application.
 	 */
-	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					makeGUI window = new makeGUI();
-					window.frame.setVisible(true);
+					window.frmCollectinggeographicInformationApp.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -83,11 +117,11 @@ public class makeGUI extends JFrame implements ActionListener{
 		});
 	}
 
-	
+
 	/**
 	 * Create the application.
 	 */
-	
+
 	public makeGUI() {
 		initialize();
 		events();
@@ -96,14 +130,14 @@ public class makeGUI extends JFrame implements ActionListener{
 	/**
 	 * Function
 	 */
-	
+
 	private void events() {
 
 		//User choose sorted by csv folder
-		btnLoadCsvFolder.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-				JFileChooser Filechoose=new JFileChooser();
+		mntmFolder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String userDir = System.getProperty("user.home");
+				JFileChooser Filechoose=new JFileChooser(userDir +"/Desktop");
 				Filechoose.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				int retval=Filechoose.showOpenDialog(null);
 				if (retval == JFileChooser.APPROVE_OPTION) {
@@ -111,30 +145,41 @@ public class makeGUI extends JFrame implements ActionListener{
 					File file = Filechoose.getSelectedFile();
 					path = file.getPath();
 					names = makeCSV.getAllcsvFileListFromFolder(path);
-				}
-			}
+				}}
 		});
 
 
 		//User choose sorted by csv file
-		btnChooseCsvFile.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
 
-				JFileChooser csvFileChoose=new JFileChooser();
-				csvFileChoose.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				int retval=csvFileChoose.showOpenDialog(null);
-				if (retval == JFileChooser.APPROVE_OPTION) {
-					//... The user selected a file, get it, use it.
-					File file = csvFileChoose.getSelectedFile();
-					path = file.getPath();
+		mntmFile_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String userDir = System.getProperty("user.home");
+				JFileChooser csvFilechoose=new JFileChooser(userDir +"/Desktop");
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV FILES", "csv");
+				csvFilechoose.setFileFilter(filter);				int returnValue = csvFilechoose.showOpenDialog(null);
+				if (returnValue == JFileChooser.APPROVE_OPTION) {
+					File selectedFile = csvFilechoose.getSelectedFile();
+					ArrayList<String> d = new ArrayList<>();
+					d.add(selectedFile.getPath());
+					names=d;
+					whiteTextBox.setText("File path:"+selectedFile.getPath());
 				}
+				
 			}
 		});
+
+
 
 		//User choose save the file by .csv
 		csvButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				wifiList =  makeCSV.readFilesAndAddToUnionList(names);
+			for (int i = 0; i < wifiList.size(); i++) {
+				if(i+1==wifiList.size()){
+					whiteTextBox.setText("Number of wifi:"+wifiList.get(i).getNumOfWifi());
+			} 
+				}
+				
 
 			}
 		});
@@ -198,7 +243,7 @@ public class makeGUI extends JFrame implements ActionListener{
 				txtpnEndTime.setVisible(!txtpnEndTime.isVisible());
 				starTimeBox.setVisible(!starTimeBox.isVisible());
 				endTimeBox.setVisible(!endTimeBox.isVisible());
-				
+
 				starTimeBox.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						startTime = starTimeBox.getText();
@@ -217,7 +262,7 @@ public class makeGUI extends JFrame implements ActionListener{
 		//Sort by ID
 		idBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				txtpnId.setVisible(!txtpnId.isVisible());
 				ID.setVisible(!ID.isVisible());
 
@@ -237,9 +282,9 @@ public class makeGUI extends JFrame implements ActionListener{
 		//Run button 
 		btnRun.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				Filter filter = null;
-				
+
 				//User choose filter by GPS
 				if(gpsBox.isSelected()==true && csvButton.isSelected()==true){
 
@@ -253,7 +298,7 @@ public class makeGUI extends JFrame implements ActionListener{
 
 				//User choose filter by time
 				else if(timeBox.isSelected() == true &&csvButton.isSelected()==true ){
-					
+
 					filter = new FilterTime(startTime, endTime);//the new filter 
 					ArrayList<WiFi> filteredList = filterList.filterList(wifiList,filter);
 					//Sorting the filteredList by signal (WiFi is implementing Comparable)
@@ -265,7 +310,7 @@ public class makeGUI extends JFrame implements ActionListener{
 
 				//User choose filter by ID
 				else if(idBox.isSelected() == true &&csvButton.isSelected()==true){
-				
+
 					filter = new FilterID(IDinfo);
 					ArrayList<WiFi> filteredList = filterList.filterList(wifiList,filter);
 					//Sorting the filteredList by signal (WiFi is implementing Comparable)
@@ -275,19 +320,20 @@ public class makeGUI extends JFrame implements ActionListener{
 				}
 
 				//////////////////////////////////////////////////////
-				
-				
+
+
 				//Only csv file
-				else if(csvButton.isSelected()==true && !gpsBox.isSelected() && !kmlButton.isSelected() ){
+				else if(csvButton.isSelected()==true && !gpsBox.isSelected() && !kmlButton.isSelected()
+						&& !idBox.isSelected() && !timeBox.isSelected()){
 					makeCSV.writeListToCSVFile2(wifiList,path);	
 					whiteTextBox.setText("All wifi file created successfuly in " + path);
 				}
-				
+
 				////////////////////////KML//////////////////////////
-				
+
 				//By GPS
 				else if(gpsBox.isSelected()==true && !csvButton.isSelected() && kmlButton.isSelected()==true){
-					
+
 					filter = new FilterGPS(StartLon, StartLat, EndLon,  EndLat);
 					ArrayList<WiFi> filteredList = filterList.filterList(wifiList,filter);
 					//Sorting the filteredList by signal (WiFi is implementing Comparable)
@@ -295,10 +341,10 @@ public class makeGUI extends JFrame implements ActionListener{
 					kml.makeKML(makeCSV.writeListToCSVFile(filteredList,path),path);
 					whiteTextBox.setText("kml file by GPS filter created successfuly in"+ path);
 				}
-				
+
 				//By time
 				else if(timeBox.isSelected()==true && !csvButton.isSelected() && kmlButton.isSelected()==true){
-					
+
 					filter = new FilterTime(startTime, endTime);//the new filter 
 
 					ArrayList<WiFi> filteredList = filterList.filterList(wifiList,filter);
@@ -307,10 +353,10 @@ public class makeGUI extends JFrame implements ActionListener{
 					kml.makeKML(makeCSV.writeListToCSVFile(filteredList,path),path);
 					whiteTextBox.setText("kml file by time filter created successfuly in"+ path);
 				}
-				
+
 				//By ID
 				else if(idBox.isSelected()==true && !csvButton.isSelected() && kmlButton.isSelected()==true){
-					
+
 					filter = new FilterID(IDinfo);
 					ArrayList<WiFi> filteredList = filterList.filterList(wifiList,filter);
 
@@ -323,50 +369,81 @@ public class makeGUI extends JFrame implements ActionListener{
 			}
 		});
 
-		Delete.addActionListener(new ActionListener() {
+		//Delete all wifi list
+		mntmDeleteData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				for (int i = 0; i < wifiList.size(); i++) {
 					wifiList.remove(i);
 				}
-
 				whiteTextBox.setText("All data has been deleted.");
+			}
+		});
+		
+		//No filter
+		mntmNoFilter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
 
 			}
 		});
+		
+		
 
+		//////////////////// Algorithms ///////////////////////////
+		
+
+		algo1Box.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				wifiList =  makeCSV.readFilesAndAddToUnionList(names);
+				textField_5.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						MAC = textField_5.getText();
+						
+						int check =	slider.getValue();
+						Filter filter = new FilterMAC(MAC);
+						ArrayList<WiFi> filteredList = filterList.filterList(wifiList,filter);
+
+						//Sorting the filteredList by signal (WiFi is implementing Comparable)
+						Collections.sort(filteredList);
+						algo1.avgGPSPoint(filteredList,check,path);
+						whiteTextBox.setText("Router Point  file created successfuly in " + path);
+					}
+				});
+			
+
+				
+			}
+		});
+		
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	
+
 	private void initialize() {
 
 
-		frame = new JFrame();
-		frame.setBounds(100, 100, 650, 400);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmCollectinggeographicInformationApp = new JFrame();
+		frmCollectinggeographicInformationApp.setTitle("Collecting geographic information app");
+		frmCollectinggeographicInformationApp.setBounds(100, 100, 650, 430);
+		frmCollectinggeographicInformationApp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		ImageIcon file = new ImageIcon("C:/Users/dorle/Desktop/file.png");
 
-		//folder
-		btnLoadCsvFolder = new JButton("Choose Folder",file);
-		btnLoadCsvFolder.setBounds(44, 11, 166, 51);
-
 		//filters panel
 		panel = new JPanel();
-		panel.setBounds(132, 78, 134, 146);
+		panel.setBounds(95, 11, 116, 146);
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Filters", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 
-		//csv file
-		btnChooseCsvFile = new JButton("Choose csv file");
-		btnChooseCsvFile.setBounds(263, 11, 166, 51);
-
 		gpsBox = new JCheckBox("GPS");
+		gpsBox.setFont(new Font("Arial", Font.PLAIN, 11));
 
 		timeBox = new JCheckBox("Time");
+		timeBox.setFont(new Font("Arial", Font.PLAIN, 11));
 
 		idBox = new JCheckBox("ID");
+		idBox.setFont(new Font("Arial", Font.PLAIN, 11));
 
 		btnRun = new JButton("Run");
 
@@ -379,9 +456,9 @@ public class makeGUI extends JFrame implements ActionListener{
 								.addComponent(idBox)
 								.addComponent(timeBox)
 								.addGroup(gl_panel.createSequentialGroup()
-										.addGap(43)
+										.addGap(19)
 										.addComponent(btnRun)))
-						.addContainerGap(80, Short.MAX_VALUE))
+						.addContainerGap(52, Short.MAX_VALUE))
 				);
 		gl_panel.setVerticalGroup(
 				gl_panel.createParallelGroup(Alignment.LEADING)
@@ -393,81 +470,85 @@ public class makeGUI extends JFrame implements ActionListener{
 						.addComponent(idBox)
 						.addGap(18)
 						.addComponent(btnRun)
-						.addGap(50))
+						.addGap(13))
 				);
 		panel.setLayout(gl_panel);
-		frame.getContentPane().setLayout(null);
-		frame.getContentPane().add(btnLoadCsvFolder);
-		frame.getContentPane().add(btnChooseCsvFile);
-		frame.getContentPane().add(panel);
+		frmCollectinggeographicInformationApp.getContentPane().setLayout(null);
+		frmCollectinggeographicInformationApp.getContentPane().add(panel);
 
 		//gps jump box
 		textField_1 = new JTextField();
 
 		textField_1.setVisible(false);
-		textField_1.setBounds(354, 91, 86, 20);
-		frame.getContentPane().add(textField_1);
+		textField_1.setBounds(298, 28, 86, 20);
+		frmCollectinggeographicInformationApp.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 
 		textField_2 = new JTextField();
 
 		textField_2.setVisible(false);
-		textField_2.setBounds(354, 122, 86, 20);
-		frame.getContentPane().add(textField_2);
+		textField_2.setBounds(298, 59, 86, 20);
+		frmCollectinggeographicInformationApp.getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 
 		textField_3 = new JTextField();
 
 		textField_3.setVisible(false);
-		textField_3.setBounds(354, 153, 86, 20);
-		frame.getContentPane().add(textField_3);
+		textField_3.setBounds(298, 90, 86, 20);
+		frmCollectinggeographicInformationApp.getContentPane().add(textField_3);
 		textField_3.setColumns(10);
 
 		textField_4 = new JTextField();
 
 		textField_4.setVisible(false);
-		textField_4.setBounds(354, 184, 86, 20);
-		frame.getContentPane().add(textField_4);
+		textField_4.setBounds(298, 121, 86, 20);
+		frmCollectinggeographicInformationApp.getContentPane().add(textField_4);
 		textField_4.setColumns(10);
 
 
 		textPane_1 = new JTextPane();
+		textPane_1.setFont(new Font("Arial", Font.BOLD, 11));
 		textPane_1.setVisible(false);
 		textPane_1.setText("Start LON:");
 		textPane_1.setBackground(SystemColor.menu);
-		textPane_1.setBounds(289, 122, 75, 20);
-		frame.getContentPane().add(textPane_1);
+		textPane_1.setBounds(233, 59, 75, 20);
+		frmCollectinggeographicInformationApp.getContentPane().add(textPane_1);
 
 		textPane_2 = new JTextPane();
+		textPane_2.setFont(new Font("Arial", Font.BOLD, 11));
 		textPane_2.setVisible(false);
 		textPane_2.setText("End LAT:");
 		textPane_2.setBackground(SystemColor.menu);
-		textPane_2.setBounds(289, 153, 75, 20);
-		frame.getContentPane().add(textPane_2);
+		textPane_2.setBounds(233, 90, 75, 20);
+		frmCollectinggeographicInformationApp.getContentPane().add(textPane_2);
 
 
 		textPane_3 = new JTextPane();
+		textPane_3.setFont(new Font("Arial", Font.BOLD, 11));
 		textPane_3.setVisible(false);
 		textPane_3.setText("End LON:");
 		textPane_3.setBackground(SystemColor.menu);
-		textPane_3.setBounds(289, 184, 75, 20);
-		frame.getContentPane().add(textPane_3);
+		textPane_3.setBounds(233, 121, 75, 20);
+		frmCollectinggeographicInformationApp.getContentPane().add(textPane_3);
 
 		textPane = new JTextPane();
+		textPane.setFont(new Font("Arial", Font.BOLD, 11));
 		textPane.setVisible(false);
 		textPane.setText("Start LAT:");
 		textPane.setBackground(SystemColor.menu);
-		textPane.setBounds(289, 91, 75, 20);
-		frame.getContentPane().add(textPane);
+		textPane.setBounds(233, 28, 75, 20);
+		frmCollectinggeographicInformationApp.getContentPane().add(textPane);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Save as", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_1.setBounds(47, 78, 75, 146);
-		frame.getContentPane().add(panel_1);
+		panel_1.setBounds(10, 11, 75, 146);
+		frmCollectinggeographicInformationApp.getContentPane().add(panel_1);
 
 		kmlButton = new JRadioButton(".kml");
+		kmlButton.setFont(new Font("Arial", Font.PLAIN, 11));
 
 		csvButton = new JRadioButton(".csv");
+		csvButton.setFont(new Font("Arial", Font.PLAIN, 11));
 
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
@@ -489,53 +570,151 @@ public class makeGUI extends JFrame implements ActionListener{
 				);
 		panel_1.setLayout(gl_panel_1);
 
-		Delete = new JButton("Delete data");
-
-		Delete.setBounds(478, 11, 134, 51);
-		frame.getContentPane().add(Delete);
-
 		whiteTextBox = new JTextPane();
-		whiteTextBox.setBounds(44, 235, 221, 115);
-		frame.getContentPane().add(whiteTextBox);
+		whiteTextBox.setBackground(SystemColor.menu);
+		whiteTextBox.setBounds(44, 324, 580, 26);
+		frmCollectinggeographicInformationApp.getContentPane().add(whiteTextBox);
 
 		txtpnStartTime = new JTextPane();
+		txtpnStartTime.setFont(new Font("Arial", Font.BOLD, 11));
 		txtpnStartTime.setVisible(false);
 		txtpnStartTime.setBackground(SystemColor.menu);
 		txtpnStartTime.setText("Start time:");
-		txtpnStartTime.setBounds(442, 91, 75, 20);
-		frame.getContentPane().add(txtpnStartTime);
+		txtpnStartTime.setBounds(386, 28, 75, 20);
+		frmCollectinggeographicInformationApp.getContentPane().add(txtpnStartTime);
 
 		txtpnEndTime = new JTextPane();
+		txtpnEndTime.setFont(new Font("Arial", Font.BOLD, 11));
 		txtpnEndTime.setVisible(false);
 		txtpnEndTime.setText("End time:");
 		txtpnEndTime.setBackground(SystemColor.menu);
-		txtpnEndTime.setBounds(442, 122, 75, 20);
-		frame.getContentPane().add(txtpnEndTime);
+		txtpnEndTime.setBounds(386, 59, 75, 20);
+		frmCollectinggeographicInformationApp.getContentPane().add(txtpnEndTime);
 
 		starTimeBox = new JTextField();
 		starTimeBox.setVisible(false);
-		starTimeBox.setBounds(508, 91, 116, 20);
-		frame.getContentPane().add(starTimeBox);
+		starTimeBox.setBounds(471, 28, 116, 20);
+		frmCollectinggeographicInformationApp.getContentPane().add(starTimeBox);
 		starTimeBox.setColumns(10);
 
 		endTimeBox = new JTextField();
 		endTimeBox.setVisible(false);
 		endTimeBox.setColumns(10);
-		endTimeBox.setBounds(508, 122, 116, 20);
-		frame.getContentPane().add(endTimeBox);
+		endTimeBox.setBounds(471, 59, 116, 20);
+		frmCollectinggeographicInformationApp.getContentPane().add(endTimeBox);
 
 		txtpnId = new JTextPane();
+		txtpnId.setFont(new Font("Arial", Font.BOLD, 11));
 		txtpnId.setVisible(false);
 		txtpnId.setBackground(SystemColor.menu);
 		txtpnId.setText("ID:");
-		txtpnId.setBounds(450, 153, 31, 20);
-		frame.getContentPane().add(txtpnId);
+		txtpnId.setBounds(394, 90, 31, 20);
+		frmCollectinggeographicInformationApp.getContentPane().add(txtpnId);
 
 		ID = new JTextField();
 		ID.setVisible(false);
-		ID.setBounds(508, 153, 116, 20);
-		frame.getContentPane().add(ID);
+		ID.setBounds(452, 90, 116, 20);
+		frmCollectinggeographicInformationApp.getContentPane().add(ID);
 		ID.setColumns(10);
+		
+		panel_3 = new JPanel();
+		panel_3.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "algo 1", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_3.setBounds(10, 168, 213, 152);
+		frmCollectinggeographicInformationApp.getContentPane().add(panel_3);
+		panel_3.setLayout(null);
+		
+		panel_2 = new Panel();
+		panel_2.setBounds(6, 16, 201, 129);
+		panel_3.add(panel_2);
+		panel_2.setBackground(SystemColor.menu);
+		panel_2.setFont(new Font("Aharoni", Font.PLAIN, 12));
+		
+		algo1Box = new JRadioButton("Algorithm 1");
+
+		algo1Box.setFont(new Font("Arial", Font.PLAIN, 13));
+		
+		txtpnMacAddress = new JTextPane();
+		txtpnMacAddress.setBackground(SystemColor.menu);
+		txtpnMacAddress.setForeground(Color.BLACK);
+		txtpnMacAddress.setFont(new Font("Arial", Font.BOLD, 12));
+		txtpnMacAddress.setText("MAC address:");
+		
+		textField_5 = new JTextField();
+
+		textField_5.setColumns(10);
+		
+		slider = new JSlider();
+		slider.setOrientation(SwingConstants.VERTICAL);
+		slider.setMinorTickSpacing(1);
+		slider.setFont(new Font("Arial", Font.BOLD, 11));
+		slider.setMajorTickSpacing(1);
+		slider.setPaintTicks(true);
+		slider.setSnapToTicks(true);
+		slider.setPaintLabels(true);
+		slider.setMinimum(1);
+		slider.setMaximum(5);
+		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
+		gl_panel_2.setHorizontalGroup(
+			gl_panel_2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addGap(7)
+					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
+						.addComponent(algo1Box)
+						.addGroup(gl_panel_2.createSequentialGroup()
+							.addGap(3)
+							.addComponent(txtpnMacAddress, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel_2.createSequentialGroup()
+							.addGap(3)
+							.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)))
+					.addGap(6)
+					.addComponent(slider, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE))
+		);
+		gl_panel_2.setVerticalGroup(
+			gl_panel_2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addGap(7)
+					.addComponent(algo1Box)
+					.addGap(19)
+					.addComponent(txtpnMacAddress, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addGap(12)
+					.addComponent(slider, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
+		);
+		panel_2.setLayout(gl_panel_2);
+		panel_2.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{algo1Box}));
+
+		menuBar = new JMenuBar();
+		frmCollectinggeographicInformationApp.setJMenuBar(menuBar);
+
+		mnFile = new JMenu("File");
+		menuBar.add(mnFile);
+
+		mntmFolder = new JMenuItem("Folder");
+
+		mnFile.add(mntmFolder);
+		
+		separator = new JSeparator();
+		mnFile.add(separator);
+
+		mntmFile_1 = new JMenuItem("File");
+
+		mnFile.add(mntmFile_1);
+
+		mnEdit = new JMenu("Edit");
+		menuBar.add(mnEdit);
+
+		mntmDeleteData = new JMenuItem("Delete data");
+
+		mnEdit.add(mntmDeleteData);
+		
+		separator_1 = new JSeparator();
+		mnEdit.add(separator_1);
+
+		mntmNoFilter = new JMenuItem("No filter");
+
+		mnEdit.add(mntmNoFilter);
 
 
 	}

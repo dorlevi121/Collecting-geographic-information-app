@@ -19,6 +19,7 @@ import GPSPoints.GPSPoint;
 	private String MAC;
 	private double freq, signal;
 	private String modelID;
+	private int numOfWifi;
 
 	
 	/**
@@ -48,7 +49,7 @@ import GPSPoints.GPSPoint;
 		this.point = new GPSPoint(point);
 		this.Time = new Date(Time.getTime());
 		this.modelID = modelID;
-	}
+		}
 
 	
 	/**
@@ -57,7 +58,8 @@ import GPSPoints.GPSPoint;
 	 */
 	public WiFi(WiFi copy) {
 		this(copy.SSID,copy.MAC, copy.freq, copy.signal, copy.point, copy.Time, copy.modelID);
-	}
+		numOfWifi++;
+		}
 
 
 	public String getModelID() {
@@ -89,6 +91,7 @@ import GPSPoints.GPSPoint;
 		return signal;
 	}
 	
+
 	
 	public String printUnion(){
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -196,5 +199,19 @@ import GPSPoints.GPSPoint;
 		}
 		return ans;
 	}
+
+
+	public int getNumOfWifi() {
+		return numOfWifi;
+	}
+
+
+	public void setNumOfWifi(int numOfWifi) {
+		this.numOfWifi = numOfWifi;
+	}
+
+
+	
+
 
 }
