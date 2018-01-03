@@ -182,9 +182,9 @@ public class Algo_2Function {
 
 	public static void main(String[] args) {
 		Algo_2Function a = new Algo_2Function();
-		a.readFile("C:\\Users\\Yarden\\Desktop\\test\\_comb_no_gps_ts1.csv");
+		a.readFile("C:\\Users\\dorle\\Desktop\\test1\\_comb_no_gps_ts1.csv");
 	//	a.readFile2("_comb_all_BM3_.csv");
 		a.search_Mac();
-		a.toCsv("C:\\Users\\Yarden\\Desktop\\test\\complete_File_Algo_2.csv");
+		a.toCsv("C:\\Users\\dorle\\Desktop\\test1\\complete_File_Algo_2.csv");
 	}
 }

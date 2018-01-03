@@ -45,6 +45,7 @@ import java.awt.Panel;
 import javax.swing.BoxLayout;
 import java.awt.FlowLayout;
 import net.miginfocom.swing.MigLayout;
+import weightedCenterPoint.Algo_2Function;
 import weightedCenterPoint.algo1;
 
 import org.eclipse.wb.swing.FocusTraversalOnArray;
@@ -53,6 +54,7 @@ import javax.swing.JTextArea;
 import javax.swing.JSlider;
 import java.awt.Choice;
 import javax.swing.SwingConstants;
+import java.awt.BorderLayout;
 
 public class makeGUI extends JFrame implements ActionListener{
 
@@ -95,10 +97,13 @@ public class makeGUI extends JFrame implements ActionListener{
 	private Panel panel_2;
 	private JRadioButton algo1Box;
 	private JTextPane txtpnMacAddress;
-	private JTextField textField;
 	private JTextField textField_5;
 	private JSlider slider;
 	private JPanel panel_3;
+	private Panel panel_4;
+	private JPanel panel_5;
+	private JRadioButton algo2Box;
+	private JButton btnBrowserFile;
 
 	/**
 	 * Launch the application.
@@ -393,6 +398,7 @@ public class makeGUI extends JFrame implements ActionListener{
 		
 
 		algo1Box.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent arg0) {
 				wifiList =  makeCSV.readFilesAndAddToUnionList(names);
 				textField_5.addActionListener(new ActionListener() {
@@ -410,11 +416,37 @@ public class makeGUI extends JFrame implements ActionListener{
 					}
 				});
 			
-
-				
 			}
 		});
 		
+		//algo 2:
+		algo2Box.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnBrowserFile.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						String userDir = System.getProperty("user.home");
+						JFileChooser csvFilechoose=new JFileChooser(userDir +"/Desktop");
+						FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV FILES", "csv");
+						csvFilechoose.setFileFilter(filter);			
+						int returnValue = csvFilechoose.showOpenDialog(null);
+						if (returnValue == JFileChooser.APPROVE_OPTION) {
+							File selectedFile = csvFilechoose.getSelectedFile();
+							whiteTextBox.setText("File path:"+selectedFile.getPath());
+							
+							Algo_2Function a = new Algo_2Function();
+							a.readFile(selectedFile.getPath());
+							a.search_Mac();
+							a.toCsv("C:\\Users\\dorle\\Desktop\\test1\\complete_File_Algo_2.csv");
+							
+						}
+					}
+				});
+				
+			}
+		});
+
+
 	}
 
 	/**
@@ -446,6 +478,7 @@ public class makeGUI extends JFrame implements ActionListener{
 		idBox.setFont(new Font("Arial", Font.PLAIN, 11));
 
 		btnRun = new JButton("Run");
+		btnRun.setFont(new Font("Arial", Font.PLAIN, 11));
 
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
@@ -684,6 +717,44 @@ public class makeGUI extends JFrame implements ActionListener{
 		);
 		panel_2.setLayout(gl_panel_2);
 		panel_2.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{algo1Box}));
+		
+		panel_5 = new JPanel();
+		panel_5.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "algo 2", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_5.setBounds(260, 168, 236, 152);
+		frmCollectinggeographicInformationApp.getContentPane().add(panel_5);
+		panel_5.setLayout(null);
+		
+		panel_4 = new Panel();
+		panel_4.setBounds(10, 21, 216, 109);
+		panel_5.add(panel_4);
+		
+		algo2Box = new JRadioButton("Algorithem 2");
+	
+		algo2Box.setFont(new Font("Arial", Font.PLAIN, 13));
+		
+		btnBrowserFile = new JButton("Browser file...");
+
+		btnBrowserFile.setFont(new Font("Arial", Font.PLAIN, 11));
+		GroupLayout gl_panel_4 = new GroupLayout(panel_4);
+		gl_panel_4.setHorizontalGroup(
+			gl_panel_4.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panel_4.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panel_4.createParallelGroup(Alignment.TRAILING)
+						.addComponent(btnBrowserFile)
+						.addComponent(algo2Box, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGap(139))
+		);
+		gl_panel_4.setVerticalGroup(
+			gl_panel_4.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_4.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(algo2Box, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(18)
+					.addComponent(btnBrowserFile)
+					.addGap(49))
+		);
+		panel_4.setLayout(gl_panel_4);
 
 		menuBar = new JMenuBar();
 		frmCollectinggeographicInformationApp.setJMenuBar(menuBar);
