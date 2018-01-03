@@ -105,9 +105,10 @@ public class Algo_2Function {
 			String line="";
 			String[] str = line.split(",");
 			line = br.readLine();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm");//12/05/17 11:48 AM
 			while (line!= null) {
 				List<algo2Network> net = new ArrayList<algo2Network>();
-				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm");//12/05/17 11:48 AM
+			
 				Date time = sdf.parse(str[0]);
 				for(int i=6;i<str.length;i+=4){
 					algo2Network n = new algo2Network(str[i], str[i+1], Integer.parseInt(str[i+3]));//String SSID, String Mac, int signal
@@ -162,7 +163,6 @@ public class Algo_2Function {
 			System.exit(2);
 		}
 	}
-
 	/**
 	 * This function writes the new CSV file
 	 * @param output output CSV file name

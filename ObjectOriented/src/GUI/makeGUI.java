@@ -285,7 +285,8 @@ public class makeGUI extends JFrame implements ActionListener{
 				Filter filter = null;
 
 				//User choose filter by GPS
-				if(gpsBox.isSelected()==true && csvButton.isSelected()==true){
+				if(gpsBox.isSelected()==true && csvButton.isSelected()==true && !kmlButton.isSelected()==true
+						&& !idBox.isSelected() && !timeBox.isSelected()){
 
 					filter = new FilterGPS(StartLon, StartLat, EndLon,  EndLat);
 					ArrayList<WiFi> filteredList = filterList.filterList(wifiList,filter);
@@ -296,7 +297,8 @@ public class makeGUI extends JFrame implements ActionListener{
 				}
 
 				//User choose filter by time
-				else if(timeBox.isSelected() == true &&csvButton.isSelected()==true ){
+				else if(timeBox.isSelected() == true &&csvButton.isSelected()==true && !kmlButton.isSelected()==true
+						&& !idBox.isSelected() && !gpsBox.isSelected() ){
 
 					filter = new FilterTime(startTime, endTime);//the new filter 
 					ArrayList<WiFi> filteredList = filterList.filterList(wifiList,filter);
@@ -308,7 +310,8 @@ public class makeGUI extends JFrame implements ActionListener{
 				}
 
 				//User choose filter by ID
-				else if(idBox.isSelected() == true &&csvButton.isSelected()==true){
+				else if(idBox.isSelected() == true &&csvButton.isSelected()==true && !kmlButton.isSelected()==true
+						&& !timeBox.isSelected() && !gpsBox.isSelected()){
 
 					filter = new FilterID(IDinfo);
 					ArrayList<WiFi> filteredList = filterList.filterList(wifiList,filter);
@@ -331,30 +334,33 @@ public class makeGUI extends JFrame implements ActionListener{
 				////////////////////////KML//////////////////////////
 
 				//By GPS
-				else if(gpsBox.isSelected()==true && !csvButton.isSelected() && kmlButton.isSelected()==true){
+				else if(gpsBox.isSelected()==true && !csvButton.isSelected() && kmlButton.isSelected()==true 
+						&& !idBox.isSelected() && !timeBox.isSelected()){
 
 					filter = new FilterGPS(StartLon, StartLat, EndLon,  EndLat);
 					ArrayList<WiFi> filteredList = filterList.filterList(wifiList,filter);
 					//Sorting the filteredList by signal (WiFi is implementing Comparable)
 					Collections.sort(filteredList);
-					kml.makeKML(makeCSV.writeListToCSVFile(filteredList,path),path);
+					kml.makeKML(filteredList,path);
 					whiteTextBox.setText("kml file by GPS filter created successfuly in"+ path);
 				}
 
 				//By time
-				else if(timeBox.isSelected()==true && !csvButton.isSelected() && kmlButton.isSelected()==true){
+				else if(timeBox.isSelected()==true && !csvButton.isSelected() && kmlButton.isSelected()==true
+						&& !idBox.isSelected() && !gpsBox.isSelected()){
 
 					filter = new FilterTime(startTime, endTime);//the new filter 
 
 					ArrayList<WiFi> filteredList = filterList.filterList(wifiList,filter);
 					//Sorting the filteredList by signal (WiFi is implementing Comparable)
 					Collections.sort(filteredList);
-					kml.makeKML(makeCSV.writeListToCSVFile(filteredList,path),path);
+					kml.makeKML(filteredList,path);
 					whiteTextBox.setText("kml file by time filter created successfuly in"+ path);
 				}
 
 				//By ID
-				else if(idBox.isSelected()==true && !csvButton.isSelected() && kmlButton.isSelected()==true){
+				else if(idBox.isSelected()==true && !csvButton.isSelected() && kmlButton.isSelected()==true
+						&& !gpsBox.isSelected() && !timeBox.isSelected()){
 
 					filter = new FilterID(IDinfo);
 					ArrayList<WiFi> filteredList = filterList.filterList(wifiList,filter);
@@ -362,11 +368,145 @@ public class makeGUI extends JFrame implements ActionListener{
 					//Sorting the filteredList by signal (WiFi is implementing Comparable)
 					Collections.sort(filteredList);
 					kml.makeKML(makeCSV.writeListToCSVFile(filteredList,path),path);
-					whiteTextBox.setText("kml file by time filter created successfuly in"+ path);
+					whiteTextBox.setText("kml file by time filter created successfuly in "+ path);
+				}
+				
+				/////////////////// KML and CSV /////////////////////////////////
+				
+				//By GPS
+				else if(gpsBox.isSelected()==true && csvButton.isSelected() && kmlButton.isSelected()==true){
+
+					filter = new FilterGPS(StartLon, StartLat, EndLon,  EndLat);
+					ArrayList<WiFi> filteredList = filterList.filterList(wifiList,filter);
+					//Sorting the filteredList by signal (WiFi is implementing Comparable)
+					Collections.sort(filteredList);
+					kml.makeKML(makeCSV.writeListToCSVFile(filteredList,path),path);
+					whiteTextBox.setText("kml and csv files by GPS filter created successfuly in "+ path);
 				}
 
+				//By time
+				else if(timeBox.isSelected()==true && csvButton.isSelected() && kmlButton.isSelected()==true){
+
+					filter = new FilterTime(startTime, endTime);//the new filter 
+					ArrayList<WiFi> filteredList = filterList.filterList(wifiList,filter);
+					//Sorting the filteredList by signal (WiFi is implementing Comparable)
+					Collections.sort(filteredList);
+					kml.makeKML(makeCSV.writeListToCSVFile(filteredList,path),path);
+					whiteTextBox.setText("kml and csv files by time filter created successfuly in "+ path);
+				}
+
+				//By ID
+				else if(idBox.isSelected()==true && csvButton.isSelected() && kmlButton.isSelected()==true){
+
+					filter = new FilterID(IDinfo);
+					ArrayList<WiFi> filteredList = filterList.filterList(wifiList,filter);
+					//Sorting the filteredList by signal (WiFi is implementing Comparable)
+					Collections.sort(filteredList);
+					kml.makeKML(makeCSV.writeListToCSVFile(filteredList,path),path);
+					whiteTextBox.setText("kml and csv files by time filter created successfuly in "+ path);
+				}
+				
+				/////////////////////////// OR NOT AND //////////////////////////////////
+				
+				//By GPS and time
+				else if(gpsBox.isSelected()==true && timeBox.isSelected()==true && csvButton.isSelected()){
+
+					filter = new FilterGPS(StartLon, StartLat, EndLon,  EndLat);
+					ArrayList<WiFi> filteredList = filterList.filterList(wifiList,filter);
+					
+					filter = new FilterTime(startTime, endTime);//the new filter 
+					ArrayList<WiFi> filteredList2 = filterList.filterList(filteredList,filter);
+					//Sorting the filteredList by signal (WiFi is implementing Comparable)
+					Collections.sort(filteredList2);
+					
+					if(kmlButton.isSelected()==true){
+						kml.makeKML(makeCSV.writeListToCSVFile(filteredList2,path), path);
+					whiteTextBox.setText("kml and csv files by GPS and time filter created successfuly in "+ path);
+					}
+					else{
+						makeCSV.writeListToCSVFile(filteredList2,path);
+						whiteTextBox.setText("csv file by GPS and time filter created successfuly in "+ path);
+
+					}
+
+				}
+				
+				///GPS and ID
+				else if(gpsBox.isSelected()==true && idBox.isSelected()==true && csvButton.isSelected()){
+
+					filter = new FilterGPS(StartLon, StartLat, EndLon,  EndLat);
+					ArrayList<WiFi> filteredList = filterList.filterList(wifiList,filter);
+					
+					filter = new FilterID(IDinfo);
+					ArrayList<WiFi> filteredList2 = filterList.filterList(filteredList,filter);
+					//Sorting the filteredList by signal (WiFi is implementing Comparable)
+					Collections.sort(filteredList2);
+					if(kmlButton.isSelected()==true){
+						kml.makeKML(makeCSV.writeListToCSVFile(filteredList2,path), path);
+					whiteTextBox.setText("kml and csv files by GPS and id filter created successfuly in "+ path);
+					}
+					else{
+						makeCSV.writeListToCSVFile(filteredList2,path);
+						whiteTextBox.setText("csv file by GPS and id filter created successfuly in "+ path);
+
+					}
+
+				}
+				
+				///ID and time
+				else if(idBox.isSelected()==true && timeBox.isSelected()==true && csvButton.isSelected()){
+
+					filter = new FilterID(IDinfo);
+					ArrayList<WiFi> filteredList = filterList.filterList(wifiList,filter);
+
+					
+					filter = new FilterTime(startTime, endTime);//the new filter 
+					ArrayList<WiFi> filteredList2 = filterList.filterList(filteredList,filter);
+					//Sorting the filteredList by signal (WiFi is implementing Comparable)
+					Collections.sort(filteredList2);
+					
+					if(kmlButton.isSelected()==true){
+						kml.makeKML(makeCSV.writeListToCSVFile(filteredList2,path), path);
+					whiteTextBox.setText("kml and csv files by ID and time filters created successfuly in "+ path);
+					}
+					else{
+						makeCSV.writeListToCSVFile(filteredList2,path);
+						whiteTextBox.setText("csv file by ID and time filters created successfuly in "+ path);
+					}
+
+				}
+
+				
+				///GPS,ID and time
+				else if(idBox.isSelected()==true && timeBox.isSelected()==true && (csvButton.isSelected() || kmlButton.isSelected())
+						&& gpsBox.isSelected()==true){
+
+					filter = new FilterID(IDinfo);
+					ArrayList<WiFi> filteredList = filterList.filterList(wifiList,filter);
+					
+					filter = new FilterGPS(StartLon, StartLat, EndLon,  EndLat);
+					ArrayList<WiFi> filteredList1 = filterList.filterList(filteredList,filter);
+					
+					
+					filter = new FilterTime(startTime, endTime);//the new filter 
+					ArrayList<WiFi> filteredList2 = filterList.filterList(filteredList1,filter);
+					//Sorting the filteredList by signal (WiFi is implementing Comparable)
+					Collections.sort(filteredList2);
+					makeCSV.writeListToCSVFile(filteredList2,path);
+					if(kmlButton.isSelected()==true){
+						kml.makeKML(makeCSV.writeListToCSVFile(filteredList2,path), path);
+					whiteTextBox.setText("kml and csv files by GPS,ID and time filter created successfuly in\n"+ path);
+					}
+					else
+						whiteTextBox.setText("csv file by GPS,ID and time filter created successfuly in"+ path);
+
+				}
+				
+				
 			}
 		});
+		
+		////////////////////////// Delete /////////////////////////////
 
 		//Delete all wifi list
 		mntmDeleteData.addActionListener(new ActionListener() {
@@ -461,6 +601,7 @@ public class makeGUI extends JFrame implements ActionListener{
 
 
 		frmCollectinggeographicInformationApp = new JFrame();
+		frmCollectinggeographicInformationApp.setFont(new Font("Arial", Font.BOLD, 12));
 		frmCollectinggeographicInformationApp.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\dorle\\Documents\\GitHub\\Collecting-geographic-information-app\\ObjectOriented\\GUI icons\\icons8-wi-fi-50.png"));
 		frmCollectinggeographicInformationApp.setTitle("Collecting geographic information app");
 		frmCollectinggeographicInformationApp.setBounds(100, 100, 650, 430);
@@ -618,7 +759,7 @@ public class makeGUI extends JFrame implements ActionListener{
 		txtpnStartTime.setVisible(false);
 		txtpnStartTime.setBackground(SystemColor.menu);
 		txtpnStartTime.setText("Start time:");
-		txtpnStartTime.setBounds(386, 28, 75, 20);
+		txtpnStartTime.setBounds(386, 28, 68, 20);
 		frmCollectinggeographicInformationApp.getContentPane().add(txtpnStartTime);
 
 		txtpnEndTime = new JTextPane();
