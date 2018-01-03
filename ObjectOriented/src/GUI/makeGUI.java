@@ -614,7 +614,7 @@ public class makeGUI extends JFrame implements ActionListener{
 
 		//filters panel
 		panel = new JPanel();
-		panel.setBounds(95, 11, 116, 146);
+		panel.setBounds(107, 11, 116, 146);
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Filters", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 
 		gpsBox = new JCheckBox("GPS");
