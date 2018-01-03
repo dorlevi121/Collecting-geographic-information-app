@@ -55,6 +55,7 @@ public class makeGUI extends JFrame implements ActionListener{
 	private JFrame frmCollectinggeographicInformationApp;
 	private double StartLon,StartLat,EndLat,EndLon;
 	private ArrayList<WiFi> wifiList;
+	private ArrayList<WiFi> noFilter;
 	private ArrayList<String> names;
 	private JCheckBox gpsBox;
 	private JCheckBox timeBox;
@@ -512,6 +513,7 @@ public class makeGUI extends JFrame implements ActionListener{
 		mntmDeleteData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				for (int i = 0; i < wifiList.size(); i++) {
+					noFilter.add(wifiList.get(i));
 					wifiList.remove(i);
 				}
 				whiteTextBox.setText("All data has been deleted.");
@@ -521,7 +523,7 @@ public class makeGUI extends JFrame implements ActionListener{
 		//No filter
 		mntmNoFilter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+			wifiList.addAll(noFilter);
 
 			}
 		});
