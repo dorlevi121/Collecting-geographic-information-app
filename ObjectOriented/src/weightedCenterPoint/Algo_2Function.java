@@ -104,9 +104,10 @@ public class Algo_2Function {
 			BufferedReader br = new BufferedReader(fr);
 			String line="";
 			String[] str = line.split(",");
-			while ((line = br.readLine()) != null) {
+			line = br.readLine();
+			while (line!= null) {
 				List<algo2Network> net = new ArrayList<algo2Network>();
-				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm a");//12/05/17 11:48 AM
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm");//12/05/17 11:48 AM
 				Date time = sdf.parse(str[0]);
 				for(int i=6;i<str.length;i+=4){
 					algo2Network n = new algo2Network(str[i], str[i+1], Integer.parseInt(str[i+3]));//String SSID, String Mac, int signal
@@ -121,6 +122,8 @@ public class Algo_2Function {
 					GPSPoint point = new GPSPoint(Double.parseDouble(str[2]),Double.parseDouble(str[3]),Double.parseDouble(str[4]));//double lat, double lon, double alt
 					_input.add(new Line_Algo2(time,str[1],point,Integer.parseInt(str[5]), net));
 				}
+				line = br.readLine();
+
 			}
 			fr.close();
 			br.close();

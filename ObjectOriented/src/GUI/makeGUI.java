@@ -2,8 +2,6 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.FileDialog;
-
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import CSV.makeCSV;
@@ -42,19 +40,14 @@ import javax.swing.JMenuItem;
 import java.awt.Font;
 import javax.swing.JSeparator;
 import java.awt.Panel;
-import javax.swing.BoxLayout;
-import java.awt.FlowLayout;
-import net.miginfocom.swing.MigLayout;
 import weightedCenterPoint.Algo_2Function;
 import weightedCenterPoint.algo1;
 
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
-import javax.swing.JTextArea;
 import javax.swing.JSlider;
-import java.awt.Choice;
 import javax.swing.SwingConstants;
-import java.awt.BorderLayout;
+import java.awt.Toolkit;
 
 public class makeGUI extends JFrame implements ActionListener{
 
@@ -104,6 +97,7 @@ public class makeGUI extends JFrame implements ActionListener{
 	private JPanel panel_5;
 	private JRadioButton algo2Box;
 	private JButton btnBrowserFile;
+	private JMenuItem mntmAbout;
 
 	/**
 	 * Launch the application.
@@ -446,6 +440,16 @@ public class makeGUI extends JFrame implements ActionListener{
 			}
 		});
 
+		
+		///////////////////////////////////////////////
+		
+		mntmAbout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				clickFilter aboutClick = new clickFilter();
+				aboutClick.NewScreen();
+			}
+		});
 
 	}
 
@@ -457,6 +461,7 @@ public class makeGUI extends JFrame implements ActionListener{
 
 
 		frmCollectinggeographicInformationApp = new JFrame();
+		frmCollectinggeographicInformationApp.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\dorle\\Documents\\GitHub\\Collecting-geographic-information-app\\ObjectOriented\\GUI icons\\icons8-wi-fi-50.png"));
 		frmCollectinggeographicInformationApp.setTitle("Collecting geographic information app");
 		frmCollectinggeographicInformationApp.setBounds(100, 100, 650, 430);
 		frmCollectinggeographicInformationApp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -763,6 +768,7 @@ public class makeGUI extends JFrame implements ActionListener{
 		menuBar.add(mnFile);
 
 		mntmFolder = new JMenuItem("Folder");
+		mntmFolder.setIcon(new ImageIcon("C:\\Users\\dorle\\Documents\\GitHub\\Collecting-geographic-information-app\\ObjectOriented\\GUI icons\\icons8-Folder-25.png"));
 
 		mnFile.add(mntmFolder);
 		
@@ -770,6 +776,7 @@ public class makeGUI extends JFrame implements ActionListener{
 		mnFile.add(separator);
 
 		mntmFile_1 = new JMenuItem("File");
+		mntmFile_1.setIcon(new ImageIcon("C:\\Users\\dorle\\Documents\\GitHub\\Collecting-geographic-information-app\\ObjectOriented\\GUI icons\\icons8-Microsoft Excel-25.png"));
 
 		mnFile.add(mntmFile_1);
 
@@ -777,6 +784,7 @@ public class makeGUI extends JFrame implements ActionListener{
 		menuBar.add(mnEdit);
 
 		mntmDeleteData = new JMenuItem("Delete data");
+		mntmDeleteData.setIcon(new ImageIcon("C:\\Users\\dorle\\Documents\\GitHub\\Collecting-geographic-information-app\\ObjectOriented\\GUI icons\\icons8-Trash-25.png"));
 
 		mnEdit.add(mntmDeleteData);
 		
@@ -784,8 +792,17 @@ public class makeGUI extends JFrame implements ActionListener{
 		mnEdit.add(separator_1);
 
 		mntmNoFilter = new JMenuItem("No filter");
+		mntmNoFilter.setIcon(new ImageIcon("C:\\Users\\dorle\\Documents\\GitHub\\Collecting-geographic-information-app\\ObjectOriented\\GUI icons\\icons8-Cancel-25.png"));
 
 		mnEdit.add(mntmNoFilter);
+		
+		JMenu mnAbout = new JMenu("About");
+		menuBar.add(mnAbout);
+		
+		mntmAbout = new JMenuItem("About");
+		mntmAbout.setIcon(new ImageIcon("C:\\Users\\dorle\\Documents\\GitHub\\Collecting-geographic-information-app\\ObjectOriented\\GUI icons\\icons8-About-25.png"));
+
+		mnAbout.add(mntmAbout);
 
 
 	}
