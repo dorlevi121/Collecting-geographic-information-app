@@ -176,9 +176,9 @@ public class Algo_2Function {
 
 	public static void main(String[] args) {
 		Algo_2Function a = new Algo_2Function();
-		a.readFile("C:\\Users\\Yarden\\Downloads\\testing (1)\\testing\\_comb_no_gps_ts1_.csv");
-        a.readCombAllFile("C:\\Users\\Yarden\\Downloads\\testing (1)\\testing\\_comb_all_BM2_.csv");
+		a.readFile("C:\\Users\\dorle\\Desktop\\test1\\_comb_no_gps_ts1_.csv");
+        a.readCombAllFile("C:\\Users\\dorle\\Desktop\\test1\\__comb_all_BM2_.csv");
 		a.search_Mac();
-		a.toCsv("C:\\Users\\Yarden\\Downloads\\testing (1)\\testing\\complete_File_Algo_2-BM2_ts1.csv");
+		a.toCsv("C:\\Users\\dorle\\Desktop\\test1\\_complete_File_Algo_2-BM2_ts1.csv");
 	}
 }

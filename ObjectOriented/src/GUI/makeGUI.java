@@ -12,6 +12,7 @@ import Filters.FilterMAC;
 import Filters.FilterTime;
 import Filters.filterList;
 import Kml.kml;
+import MainWatch.watch;
 import Wifi.WiFi;
 
 import javax.swing.ImageIcon;
@@ -295,6 +296,13 @@ public class makeGUI extends JFrame implements ActionListener{
 					Collections.sort(filteredList);
 					makeCSV.writeListToCSVFile(filteredList,path);
 					whiteTextBox.setText("Csv file by GPS filter created successfuly in"+ path);
+					
+					try {
+						watch.watching(path);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 
 				//User choose filter by time
@@ -307,6 +315,13 @@ public class makeGUI extends JFrame implements ActionListener{
 					Collections.sort(filteredList);
 					makeCSV.writeListToCSVFile(filteredList,path);
 					whiteTextBox.setText("Csv file by time filter created successfuly in"+ path);
+					
+					try {
+						watch.watching(path);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 
 				}
 
@@ -320,6 +335,14 @@ public class makeGUI extends JFrame implements ActionListener{
 					Collections.sort(filteredList);
 					makeCSV.writeListToCSVFile(filteredList,path);
 					whiteTextBox.setText("Csv file by ID filter created successfuly in"+ path);
+					
+					try {
+						watch.watching(path);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
 				}
 
 				//////////////////////////////////////////////////////
@@ -330,6 +353,14 @@ public class makeGUI extends JFrame implements ActionListener{
 						&& !idBox.isSelected() && !timeBox.isSelected()){
 					makeCSV.writeListToCSVFile2(wifiList,path);	
 					whiteTextBox.setText("All wifi file created successfuly in " + path);
+					
+					try {
+						watch.watching(path);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
 				}
 
 				////////////////////////KML//////////////////////////
@@ -344,6 +375,14 @@ public class makeGUI extends JFrame implements ActionListener{
 					Collections.sort(filteredList);
 					kml.makeKML(filteredList,path);
 					whiteTextBox.setText("kml file by GPS filter created successfuly in"+ path);
+					
+					try {
+						watch.watching(path);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
 				}
 
 				//By time
@@ -357,6 +396,13 @@ public class makeGUI extends JFrame implements ActionListener{
 					Collections.sort(filteredList);
 					kml.makeKML(filteredList,path);
 					whiteTextBox.setText("kml file by time filter created successfuly in"+ path);
+					
+					try {
+						watch.watching(path);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 
 				//By ID
@@ -370,6 +416,13 @@ public class makeGUI extends JFrame implements ActionListener{
 					Collections.sort(filteredList);
 					kml.makeKML(makeCSV.writeListToCSVFile(filteredList,path),path);
 					whiteTextBox.setText("kml file by time filter created successfuly in "+ path);
+					
+					try {
+						watch.watching(path);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 				
 				/////////////////// KML and CSV /////////////////////////////////
@@ -383,6 +436,13 @@ public class makeGUI extends JFrame implements ActionListener{
 					Collections.sort(filteredList);
 					kml.makeKML(makeCSV.writeListToCSVFile(filteredList,path),path);
 					whiteTextBox.setText("kml and csv files by GPS filter created successfuly in "+ path);
+					
+					try {
+						watch.watching(path);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 
 				//By time
@@ -394,6 +454,12 @@ public class makeGUI extends JFrame implements ActionListener{
 					Collections.sort(filteredList);
 					kml.makeKML(makeCSV.writeListToCSVFile(filteredList,path),path);
 					whiteTextBox.setText("kml and csv files by time filter created successfuly in "+ path);
+					try {
+						watch.watching(path);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 
 				//By ID
@@ -405,6 +471,13 @@ public class makeGUI extends JFrame implements ActionListener{
 					Collections.sort(filteredList);
 					kml.makeKML(makeCSV.writeListToCSVFile(filteredList,path),path);
 					whiteTextBox.setText("kml and csv files by time filter created successfuly in "+ path);
+					
+					try {
+						watch.watching(path);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 				
 				/////////////////////////// OR NOT AND //////////////////////////////////
@@ -429,7 +502,12 @@ public class makeGUI extends JFrame implements ActionListener{
 						whiteTextBox.setText("csv file by GPS and time filter created successfuly in "+ path);
 
 					}
-
+					try {
+						watch.watching(path);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 				
 				///GPS and ID
@@ -451,7 +529,12 @@ public class makeGUI extends JFrame implements ActionListener{
 						whiteTextBox.setText("csv file by GPS and id filter created successfuly in "+ path);
 
 					}
-
+					try {
+						watch.watching(path);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 				
 				///ID and time
@@ -474,6 +557,13 @@ public class makeGUI extends JFrame implements ActionListener{
 						makeCSV.writeListToCSVFile(filteredList2,path);
 						whiteTextBox.setText("csv file by ID and time filters created successfuly in "+ path);
 					}
+					
+					try {
+						watch.watching(path);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 
 				}
 
@@ -493,14 +583,23 @@ public class makeGUI extends JFrame implements ActionListener{
 					ArrayList<WiFi> filteredList2 = filterList.filterList(filteredList1,filter);
 					//Sorting the filteredList by signal (WiFi is implementing Comparable)
 					Collections.sort(filteredList2);
-					makeCSV.writeListToCSVFile(filteredList2,path);
+					
 					if(kmlButton.isSelected()==true){
 						kml.makeKML(makeCSV.writeListToCSVFile(filteredList2,path), path);
 					whiteTextBox.setText("kml and csv files by GPS,ID and time filter created successfuly in\n"+ path);
 					}
-					else
+					else{
+						makeCSV.writeListToCSVFile(filteredList2,path);
 						whiteTextBox.setText("csv file by GPS,ID and time filter created successfuly in"+ path);
 
+					}
+
+					try {
+						watch.watching(path);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 				
 				
@@ -552,8 +651,16 @@ public class makeGUI extends JFrame implements ActionListener{
 					}
 				});
 			
+				try {
+					watch.watching(path);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			
 			}
 		});
+
 		
 		//algo 2:
 		algo2Box.addActionListener(new ActionListener() {
@@ -575,7 +682,12 @@ public class makeGUI extends JFrame implements ActionListener{
 							a.readFile(selectedFile.getPath());
 							a.search_Mac();
 							a.toCsv("C:\\Users\\dorle\\Desktop\\test1\\complete_File_Algo_2.csv");
-							
+							try {
+								watch.watching(path);
+							} catch (Exception e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 						}
 					}
 				});
@@ -590,7 +702,7 @@ public class makeGUI extends JFrame implements ActionListener{
 			public void actionPerformed(ActionEvent e) {
 				
 				clickFilter aboutClick = new clickFilter();
-				aboutClick.NewScreen();
+				aboutClick.main();
 			}
 		});
 

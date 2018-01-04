@@ -27,13 +27,11 @@ import java.awt.Toolkit;
 
 public class clickFilter {
 
-	private JFrame frmGpsFilter;
-	double StartLon,StartLat,EndLat,EndLon;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void NewScreen() {
+	public static void main() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -46,24 +44,18 @@ public class clickFilter {
 		});
 	}
 
+
+
+	private JFrame frmGpsFilter;
+
 	/**
 	 * Create the application.
 	 */
 	public clickFilter() {
 		initialize();
-		function();
+
 	}
 
-	public void function(){
-
-		Filter filter = new FilterGPS(StartLon, StartLat, EndLon,  EndLat);
-		//ArrayList<WiFi> filteredList = filterList.filterList(unionList,filter);
-		//Sorting the filteredList by signal (WiFi is implementing Comparable)
-		//Collections.sort(filteredList);
-
-		//writeListToCSVFile(filteredList,WriteFolder);
-	//	kml.makeKML(makeCSV.writeListToCSVFile(filteredList,WriteFolder),WriteFolder);
-	}
 
 
 	/**
