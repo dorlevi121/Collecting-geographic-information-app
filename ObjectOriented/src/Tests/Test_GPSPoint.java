@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import GPSPoints.GPSPoint;
 
