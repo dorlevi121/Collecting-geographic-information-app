@@ -66,7 +66,7 @@ Success!
 ### main:
 •	run: runs the program.
 
-### main:
+### GUI:
 •	makeGUI:
 
 •	clickFilter:
