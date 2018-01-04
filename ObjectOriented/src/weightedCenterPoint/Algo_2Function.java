@@ -1,5 +1,5 @@
 package weightedCenterPoint;
-
+import GPSPoints.GPSPoint;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -26,7 +26,6 @@ public class Algo_2Function {
 	private List<Line_Algo2> _data;
 	private GPSPoint _point;
 	private double w_alt, w_lon, w_lat;
-
 	/**
 	 * This function go over the Input list and search every MAC address in the Data list
 	 * return the new location in the Input file
@@ -63,16 +62,18 @@ public class Algo_2Function {
 					List<Algo2_line> ls = _list.get(i);
 					Algo2_line alg = ls.get(j);
 					pi*=alg.get_weight();
-					_point = alg.get_p();
+					_point = alg.get_point();
 				
 				}
 				_comb.add(new Calculate_Algo2(_point,pi));
 			}
 			_comb.sort(null);
 			calc_Weight();
-			line_input.setGPSPoint(new GPSPoint( w_lat,w_lon,w_alt));
+			line_input.setGPSPoint(new GPSPoint(w_lat,w_lon,w_alt));
+			
 		}
 	}
+
 
 	/**
 	 * this function calculate the wLat,wLon,wAlt according to the demands
@@ -103,15 +104,13 @@ public class Algo_2Function {
 			FileReader fr = new FileReader(fileName);
 			BufferedReader br = new BufferedReader(fr);
 			String line="";
-			String[] str = line.split(",");
-			line = br.readLine();
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm");//12/05/17 11:48 AM
-			while (line!= null) {
+			while ((line = br.readLine()) != null) {
+				String[] str = line.split(",");
 				List<algo2Network> net = new ArrayList<algo2Network>();
-			
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm a");//12/05/17 11:48 AM
 				Date time = sdf.parse(str[0]);
 				for(int i=6;i<str.length;i+=4){
-					algo2Network n = new algo2Network(str[i], str[i+1], Integer.parseInt(str[i+3]));//String SSID, String Mac, int signal
+					algo2Network n = new algo2Network( str[i+1], Integer.parseInt(str[i+3]));//String SSID, String Mac, int signal
 					net.add(n);
 				}
 				net.sort(null);
@@ -123,8 +122,6 @@ public class Algo_2Function {
 					GPSPoint point = new GPSPoint(Double.parseDouble(str[2]),Double.parseDouble(str[3]),Double.parseDouble(str[4]));//double lat, double lon, double alt
 					_input.add(new Line_Algo2(time,str[1],point,Integer.parseInt(str[5]), net));
 				}
-				line = br.readLine();
-
 			}
 			fr.close();
 			br.close();
@@ -134,40 +131,34 @@ public class Algo_2Function {
 			System.exit(2);
 		}
 	}
-	/**
-	 * Reading from merge input file (my merge file not boaz)
-	 * @param fileName
-	 */
-/*/	public void readFile2(String fileName){
-		_data = new ArrayList<Line_Algo2>();
-		try{
-			BufferedReader br = new BufferedReader(new FileReader(fileName));
-			String line=""; 
-			br.readLine();   
-			while ((line = br.readLine()) != null) {
-				String[] str = line.split(",");
-				List<Network> net = new ArrayList<Network>();
-				Point_2D point = new Point_2D(Double.parseDouble(str[3]),Double.parseDouble(str[2]));
-				Time time = new Time();
-				time = time.set_Date(str[0]);
-				for(int i=6;i<str.length;i+=4){ 
-					Network n = new Network(str[i], str[i+1], Integer.parseInt(str[i+2]), str[i+3]);
-					net.add(n);
-				} 
-				_data.add(new LineFile(time,str[1],point,Double.parseDouble(str[4]),Integer.parseInt(str[5]), net));
-			}
-			br.close();
-		}
-		catch(IOException ex) {
-			System.out.print("Error Algo2 reading comb file\n" + ex);
-			System.exit(2);
-		}
-	}
-	/**
-	 * This function writes the new CSV file
-	 * @param output output CSV file name
-	 */
 
+    public void readCombAllFile(String fileName){
+    		_data = new ArrayList<Line_Algo2>();
+    		try{
+    			FileReader Fr = new FileReader(fileName);
+    			BufferedReader br = new BufferedReader(Fr);
+    			String line = br.readLine(); 
+    			String[] str = line.split(",");  
+    			while (line  != null) {
+    				List<algo2Network> net = new ArrayList<algo2Network>();
+    				GPSPoint point1 = new GPSPoint(Double.parseDouble(str[2]),Double.parseDouble(str[3]),Double.parseDouble(str[4]));
+    				SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//2017-12-03 08:53:08
+    				Date time1 = sdf1.parse(str[0]);
+    				for(int i=6;i<str.length;i+=4){ 
+    					algo2Network n = new algo2Network( str[i+1],( (int)(Double.parseDouble(str[i+3]))));//String SSID, String Mac, int signal
+    					net.add(n);
+    				} 
+    				_data.add(new Line_Algo2(time1,str[1],point1,Integer.parseInt(str[5]), net));
+    				line=br.readLine();//Date time, String modelID,GPSPoint Point_3D,int numOfNetworks, List<algo2Network> listOfnetwork
+    			}
+    			br.close();
+    		}
+    		catch(IOException | ParseException ex) {
+    			System.out.print("Error Algo2 reading comb file\n"+ex );
+    			System.exit(2);
+    		}
+    	}
+   
 	public void toCsv(String output){
 		try{
 			FileWriter fw = new FileWriter(output);
@@ -185,9 +176,9 @@ public class Algo_2Function {
 
 	public static void main(String[] args) {
 		Algo_2Function a = new Algo_2Function();
-		a.readFile("C:\\Users\\dorle\\Desktop\\test1\\_comb_no_gps_ts1.csv");
-	//	a.readFile2("_comb_all_BM3_.csv");
+		a.readFile("C:\\Users\\Yarden\\Downloads\\testing (1)\\testing\\_comb_no_gps_ts1_.csv");
+        a.readCombAllFile("C:\\Users\\Yarden\\Downloads\\testing (1)\\testing\\_comb_all_BM2_.csv");
 		a.search_Mac();
-		a.toCsv("C:\\Users\\dorle\\Desktop\\test1\\complete_File_Algo_2.csv");
+		a.toCsv("C:\\Users\\Yarden\\Downloads\\testing (1)\\testing\\complete_File_Algo_2-BM2_ts1.csv");
 	}
 }
