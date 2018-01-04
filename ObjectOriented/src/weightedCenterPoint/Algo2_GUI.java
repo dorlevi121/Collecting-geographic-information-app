@@ -11,9 +11,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+
+import Filters.FilterMAC;
+import Filters.filterList;
 import weightedCenterPoint.Algo_2Function;
 
 import GPSPoints.GPSPoint;
+import Wifi.WiFi;
 
 
 
@@ -22,7 +26,7 @@ public class Algo2_GUI {
 	private List<List<Algo2_line>> _list; // the excel list for all MAC
 	private List<Calculate_Algo2> _comb; //combined list for the final calculates
 	private List<Line_Algo2> _input;
-	List<algo2Network> macAndSignal;
+	algo2Network[] macAndSignal;
 	private List<Line_Algo2> _data;
 	private GPSPoint _point;
 	private double w_alt, w_lon, w_lat;
@@ -63,16 +67,24 @@ public class Algo2_GUI {
 			for(algo2Network net : n){
 				List<Algo2_line> l = new ArrayList<Algo2_line>();
 				String mac_input = net.getMac();
-				List<algo2Network> _wifi = macAndSignal;
-				for(algo2Network wifi : _wifi){
-					if(wifi.getMac().equals(mac_input)){
-						Algo2_line al = new Algo2_line(line_input,net.getSignal(), wifi.getSignal());
+				//List<algo2Network> _wifi =new ArrayList<>() macAndSignal;
+				for (int i = 0; i < macAndSignal.length; i++) {
+					if(macAndSignal[i].getMac().equals(mac_input)){
+						Algo2_line al = new Algo2_line(line_input,net.getSignal(), macAndSignal[i].getSignal());
 						l.add(al);
 					}
 					else{
 						Algo2_line al =new Algo2_line(line_input,net.getSignal(),NO_SIGNAL);
 						l.add(al);
 					}
+				}
+			/*/	for(algo2Network wifi : macAndSignal){
+					if(wifi!=null &&(wifi.getMac().equals(mac_input))){
+						Algo2_line al = new Algo2_line(line_input,net.getSignal(), wifi.getSignal());
+						l.add(al);
+					}
+			/*/		
+				
 				}
 
 				_list.add(l);
@@ -96,7 +108,7 @@ public class Algo2_GUI {
 			_point= new GPSPoint(w_lat,w_lon, w_alt);
 		}
 
-	}
+
 	public void calc_Weight(){
 		double sum_wAlt = 0, sum_wLon = 0, sum_wLat = 0, sum_Weight = 0;
 		for (int i=0; i < 2 && i<_comb.size(); i++){
@@ -130,31 +142,20 @@ public class Algo2_GUI {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		List<algo2Network> macAndSignal = new ArrayList<algo2Network>();
-		for (int i = 1; i < 4; i++) {
-			algo2Network a =new algo2Network( "", 0);
-			System.out.println("Enter MAC"+i+":");
-			String MAC = sc.nextLine();
-			a.setMac(MAC);
-			String enter =sc.nextLine();
-			System.out.println("Enter signal"+i+":");
-			double signal = sc.nextDouble();
-			a.Signal=signal;
-			macAndSignal.add(a);	
-		}
+		//List<algo2Network> macAndSignal = new ArrayList<algo2Network>();
+		algo2Network[] macAndSignal =new algo2Network [3];
+		algo2Network a1= new algo2Network("00:1a:dd:e3:06:e4", -78);
+		algo2Network a2= new algo2Network("14:ae:db:43:88:35", -84);
+		algo2Network a3= new algo2Network("1c:b9:c4:16:f4:78", -68);
+		macAndSignal[0]=a1;macAndSignal[1]=a2;macAndSignal[2]=a3;
+	
 		Algo2_GUI a = new Algo2_GUI();
-		a.readCombAllFile("C:\\Users\\Yarden\\Downloads\\testing (1)\\testing\\_comb_all_BM2_.csv");
+		a.read
 		a.search_MacAndSignal();
 		a.toCsv("C:\\Users\\Yarden\\Downloads\\testing (1)\\testing\\complete_File_Algo_2-BM2_ts1.csv");
 		System.out.println("done");
-		//00:1a:dd:e3:06:e4 
-		//-78
-		//14:ae:db:43:88:35
-		//-84
-		//1c:b9:c4:16:f4:78
 
 	}
 
+
 }
-
-
