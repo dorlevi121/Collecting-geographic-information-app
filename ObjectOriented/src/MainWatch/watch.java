@@ -49,7 +49,7 @@ public class watch {
        while (true) {
            WatchKey queuedKey = watchService.take();
            for (WatchEvent<?> watchEvent : queuedKey.pollEvents()) {
-               System.out.printf("Event... kind=%s, count=%d, context=%s Context type=%s%n",
+               System.out.printf("Event... kind=%s, count=%d, file change=%s Context type=%s%n",
                                    watchEvent.kind(),
                                    watchEvent.count(), watchEvent.context(),
                                    ((Path) watchEvent.context()).getClass());
@@ -76,8 +76,4 @@ public class watch {
        }
    }
    
-	public static void main(String[] args) throws Exception {
-		
-  watching("C://Users//dorle//Desktop//test");
-	}
 }
