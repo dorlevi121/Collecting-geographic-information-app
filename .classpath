@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="ObjectOriented/src"/>
-	<classpathentry kind="lib" path="ObjectOriented/KML api/activation-1.1.jar"/>
-	<classpathentry kind="lib" path="ObjectOriented/KML api/JavaAPIforKml-2.2.0.jar"/>
-	<classpathentry kind="lib" path="ObjectOriented/KML api/jaxb-api-2.1.jar"/>
-	<classpathentry kind="lib" path="ObjectOriented/KML api/jaxb-impl-2.1.17.jar"/>
-	<classpathentry kind="lib" path="ObjectOriented/KML api/jsr173_api-1.0.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="output" path="ObjectOriented/bin"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="C:/Users/dorle/workspace/activation-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dorle/workspace/JavaAPIforKml-2.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dorle/workspace/jaxb-api-2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dorle/workspace/jaxb-impl-2.1.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dorle/workspace/jsr173_api-1.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/dorle/Documents/GitHub/Collecting-geographic-information-app/KML api/jgoodies-common-1.8.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dorle/Documents/GitHub/Collecting-geographic-information-app/KML api/jgoodies-forms-1.8.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dorle/Documents/GitHub/Collecting-geographic-information-app/KML api/miglayout15-swing.jar"/>
+	<classpathentry kind="output" path="bin"/>
 </classpath>

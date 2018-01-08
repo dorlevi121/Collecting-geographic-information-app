@@ -6,23 +6,33 @@ import java.nio.file.*;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.sun.xml.bind.WhiteSpaceProcessor;
 
-import weightedCenterPoint.Algo_2Function;
-
-
-public class watch {
+public class watch implements Runnable{
 	
    private static Map<WatchKey, Path> keyPathMap = new HashMap<>();
-
-   public static void watching (String path) throws Exception {
-       try (WatchService watchService = FileSystems.getDefault().newWatchService()) {
-           registerDir(Paths.get(path), watchService);
-           startListening(watchService);
-       }
+static Path path;
+   
+   @Override
+   public void run() {
+	   try (WatchService watchService = FileSystems.getDefault().newWatchService()) {
+			registerDir(path, watchService);
+			startListening(watchService);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
    }
+   
 
-   private static void registerDir (Path path, WatchService watchService) throws
+
+	public watch(String path) throws Exception
+	{
+	
+		watch.path = Paths.get(path);
+	}
+
+
+
+private static void registerDir (Path path, WatchService watchService) throws
                        IOException {
 
 
@@ -49,7 +59,7 @@ public class watch {
        while (true) {
            WatchKey queuedKey = watchService.take();
            for (WatchEvent<?> watchEvent : queuedKey.pollEvents()) {
-               System.out.printf("Event... kind=%s, count=%d, context=%s Context type=%s%n",
+               System.out.printf("Event... kind=%s, count=%d, file change=%s Context type=%s%n",
                                    watchEvent.kind(),
                                    watchEvent.count(), watchEvent.context(),
                                    ((Path) watchEvent.context()).getClass());
@@ -75,9 +85,7 @@ public class watch {
            }
        }
    }
+
+
    
-	public static void main(String[] args) throws Exception {
-		
-  watching("C://Users//dorle//Desktop//test");
-	}
 }

@@ -13,6 +13,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+import org.omg.CORBA._PolicyStub;
+
 import GPSPoints.GPSPoint;
 
 /**
@@ -133,7 +135,7 @@ public class Algo_2Function {
 			while ((line = br.readLine()) != null) {
 				String[] str = line.split(",");
 				List<algo2Network> net = new ArrayList<algo2Network>();
-				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm a");// 12/05/17
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm");// 12/05/17
 				// 11:48
 				// AM
 				Date time = sdf.parse(str[0]);
@@ -249,7 +251,7 @@ public class Algo_2Function {
 			System.out.print("Error writing file\n" + ex);
 		}
 	}
-	public void Test(){
+	public void Algo2_three(){
 		Scanner sc = new Scanner(System.in);
 		ArrayList<algo2Network> threeList = new ArrayList<algo2Network>();
 		for (int i = 0; i < 3; i++) {
@@ -277,11 +279,17 @@ public class Algo_2Function {
 	}
 	public static void main(String[] args) {
 
-		Algo_2Function a = new Algo_2Function();
-		a.readFile("C:\\Users\\Yarden\\Downloads\\testing (1)\\testing\\_comb_no_gps_ts1_.csv");
-		a.readCombAllFile("C:\\Users\\Yarden\\Downloads\\testing (1)\\testing\\_comb_all_BM2_.csv");
-		a.Test();
-		a.search_Mac();
-		a.PointToCsv("C:\\Users\\Yarden\\Downloads\\testing (1)\\testing\\_complete_File_Algo_2-BM2_ts1.csv");
+//		Algo_2Function a = new Algo_2Function();
+//		a.readFile("C:\\Users\\dorle\\Downloads\\testing (1)\\testing\\_comb_no_gps_ts1_.csv");
+//		a.readCombAllFile("C:\\Users\\Yarden\\Downloads\\testing (1)\\testing\\_comb_all_BM2_.csv");
+//		a.search_Mac();
+//	    a.toCsv("C:\\Users\\Yarden\\Downloads\\testing (1)\\testing\\final_Algo2.csv");
+		  
+	    ///For Algo2_3mac and 3 sigals///
+		Algo_2Function b = new Algo_2Function();
+		b.readFile("C:\\Users\\dorle\\Desktop\\test1\\_comb_no_gps_ts1.csv");
+		b.readCombAllFile("C:\\Users\\dorle\\Desktop\\test1\\_comb_all_BM2_.csv");
+		b.Algo2_three();
+		b.PointToCsv("C:\\Users\\dorle\\Desktop\\test1\\_complete_File_Algo_2-BM2_ts1.csv");
 	}
 }
