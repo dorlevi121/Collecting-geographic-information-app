@@ -1,6 +1,7 @@
 package Filters;
 import Wifi.WiFi;
 import de.micromata.opengis.kml.v_2_2_0.Point;
+import weightedCenterPoint.Line_Algo2;
 /**
 * This class compare between 2 wifi by GPS
 * @author Dor Levi, Yarden Mizrahi
@@ -34,6 +35,16 @@ public class FilterGPS implements Filter{
 			}
 		
 		return false;
+	}
+
+	@Override
+	public boolean isBelongsql(Line_Algo2 wifi) {
+		if (((wifi.point3D.getLon() > this.lonStart) && (wifi.point3D.getLon() < this.lonEnd))
+				&& ((wifi.point3D.getLat() > this.latStart) && (wifi.point3D.getLat() < this.latEnd))){
+			return true;
+		}
+	
+	return false;
 	}
 	
 

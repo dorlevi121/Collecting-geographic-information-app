@@ -1,8 +1,10 @@
 package Filters;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import Wifi.WiFi;
+import weightedCenterPoint.Line_Algo2;
 /**
 * This class compare between 2 wifi by filter
 * @author Dor Levi, Yarden Mizrahi
@@ -19,5 +21,14 @@ public class filterList {
 		return result;
 	}
 
+
+	public static List<Line_Algo2> filterList1(List<Line_Algo2> list, Filter filter){
+		List<Line_Algo2> result = new ArrayList<Line_Algo2>();
+		for (Line_Algo2 wifi : list){
+			if (filter.isBelongsql(wifi))
+				result.add(wifi);
+		}
+		return result;
+	}
 
 }

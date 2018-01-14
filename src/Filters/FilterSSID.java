@@ -1,5 +1,6 @@
 package Filters;
 import Wifi.WiFi;
+import weightedCenterPoint.Line_Algo2;
 
 /**
 * This class compare between 2 wifi by SSID
@@ -20,6 +21,12 @@ public class FilterSSID implements Filter{
 	@Override
 	public boolean isBelong(WiFi wifi) {
 		return SSID.toUpperCase().equals(wifi.getSSID().toUpperCase()) || wifi.getSSID().toUpperCase().contains(SSID.toUpperCase());
+	}
+
+	@Override
+	public boolean isBelongsql(Line_Algo2 wifi) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

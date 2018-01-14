@@ -80,7 +80,7 @@ public class gui extends JFrame implements ActionListener{
 	private JTextPane textPane;
 	private JRadioButton kmlButton;
 	private JRadioButton csvButton;
-	private JTextPane whiteTextBox;
+	public JTextPane whiteTextBox;
 	private JTextPane txtpnEndTime;
 	private JTextPane txtpnStartTime;
 	private JTextField starTimeBox;
@@ -922,13 +922,13 @@ public class gui extends JFrame implements ActionListener{
 		frmCollectinggeographicInformationApp.setFont(new Font("Arial", Font.BOLD, 12));
 		frmCollectinggeographicInformationApp.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\dorle\\Documents\\GitHub\\Collecting-geographic-information-app\\GUI icons\\icons8-wi-fi-50.png"));
 		frmCollectinggeographicInformationApp.setTitle("Collecting geographic information app");
-		frmCollectinggeographicInformationApp.setBounds(100, 100, 650, 430);
+		frmCollectinggeographicInformationApp.setBounds(100, 100, 850, 500);
 		frmCollectinggeographicInformationApp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
 		//filters panel
 		panel = new JPanel();
-		panel.setBounds(107, 11, 116, 146);
+		panel.setBounds(251, 11, 116, 146);
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Filters", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 
 		gpsBox = new JCheckBox("GPS");
@@ -979,28 +979,28 @@ public class gui extends JFrame implements ActionListener{
 		textField_1 = new JTextField();
 
 		textField_1.setVisible(false);
-		textField_1.setBounds(298, 28, 86, 20);
+		textField_1.setBounds(510, 28, 86, 20);
 		frmCollectinggeographicInformationApp.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 
 		textField_2 = new JTextField();
 
 		textField_2.setVisible(false);
-		textField_2.setBounds(298, 59, 86, 20);
+		textField_2.setBounds(510, 59, 86, 20);
 		frmCollectinggeographicInformationApp.getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 
 		textField_3 = new JTextField();
 
 		textField_3.setVisible(false);
-		textField_3.setBounds(298, 90, 86, 20);
+		textField_3.setBounds(510, 90, 86, 20);
 		frmCollectinggeographicInformationApp.getContentPane().add(textField_3);
 		textField_3.setColumns(10);
 
 		textField_4 = new JTextField();
 
 		textField_4.setVisible(false);
-		textField_4.setBounds(298, 121, 86, 20);
+		textField_4.setBounds(510, 121, 86, 20);
 		frmCollectinggeographicInformationApp.getContentPane().add(textField_4);
 		textField_4.setColumns(10);
 
@@ -1010,7 +1010,7 @@ public class gui extends JFrame implements ActionListener{
 		textPane_1.setVisible(false);
 		textPane_1.setText("Start LON:");
 		textPane_1.setBackground(SystemColor.menu);
-		textPane_1.setBounds(233, 59, 75, 20);
+		textPane_1.setBounds(425, 59, 75, 20);
 		frmCollectinggeographicInformationApp.getContentPane().add(textPane_1);
 
 		textPane_2 = new JTextPane();
@@ -1018,7 +1018,7 @@ public class gui extends JFrame implements ActionListener{
 		textPane_2.setVisible(false);
 		textPane_2.setText("End LAT:");
 		textPane_2.setBackground(SystemColor.menu);
-		textPane_2.setBounds(233, 90, 75, 20);
+		textPane_2.setBounds(425, 90, 75, 20);
 		frmCollectinggeographicInformationApp.getContentPane().add(textPane_2);
 
 
@@ -1027,7 +1027,7 @@ public class gui extends JFrame implements ActionListener{
 		textPane_3.setVisible(false);
 		textPane_3.setText("End LON:");
 		textPane_3.setBackground(SystemColor.menu);
-		textPane_3.setBounds(233, 121, 75, 20);
+		textPane_3.setBounds(425, 121, 75, 20);
 		frmCollectinggeographicInformationApp.getContentPane().add(textPane_3);
 
 		textPane = new JTextPane();
@@ -1035,7 +1035,7 @@ public class gui extends JFrame implements ActionListener{
 		textPane.setVisible(false);
 		textPane.setText("Start LAT:");
 		textPane.setBackground(SystemColor.menu);
-		textPane.setBounds(233, 28, 75, 20);
+		textPane.setBounds(425, 28, 75, 20);
 		frmCollectinggeographicInformationApp.getContentPane().add(textPane);
 
 		JPanel panel_1 = new JPanel();
@@ -1079,7 +1079,7 @@ public class gui extends JFrame implements ActionListener{
 		txtpnStartTime.setVisible(false);
 		txtpnStartTime.setBackground(SystemColor.menu);
 		txtpnStartTime.setText("Start time:");
-		txtpnStartTime.setBounds(386, 28, 68, 20);
+		txtpnStartTime.setBounds(613, 28, 68, 20);
 		frmCollectinggeographicInformationApp.getContentPane().add(txtpnStartTime);
 
 		txtpnEndTime = new JTextPane();
@@ -1087,19 +1087,19 @@ public class gui extends JFrame implements ActionListener{
 		txtpnEndTime.setVisible(false);
 		txtpnEndTime.setText("End time:");
 		txtpnEndTime.setBackground(SystemColor.menu);
-		txtpnEndTime.setBounds(386, 59, 75, 20);
+		txtpnEndTime.setBounds(606, 59, 75, 20);
 		frmCollectinggeographicInformationApp.getContentPane().add(txtpnEndTime);
 
 		starTimeBox = new JTextField();
 		starTimeBox.setVisible(false);
-		starTimeBox.setBounds(471, 28, 116, 20);
+		starTimeBox.setBounds(691, 28, 116, 20);
 		frmCollectinggeographicInformationApp.getContentPane().add(starTimeBox);
 		starTimeBox.setColumns(10);
 
 		endTimeBox = new JTextField();
 		endTimeBox.setVisible(false);
 		endTimeBox.setColumns(10);
-		endTimeBox.setBounds(471, 59, 116, 20);
+		endTimeBox.setBounds(691, 59, 116, 20);
 		frmCollectinggeographicInformationApp.getContentPane().add(endTimeBox);
 
 		txtpnId = new JTextPane();
@@ -1107,12 +1107,12 @@ public class gui extends JFrame implements ActionListener{
 		txtpnId.setVisible(false);
 		txtpnId.setBackground(SystemColor.menu);
 		txtpnId.setText("ID:");
-		txtpnId.setBounds(394, 90, 31, 20);
+		txtpnId.setBounds(614, 90, 31, 20);
 		frmCollectinggeographicInformationApp.getContentPane().add(txtpnId);
 
 		ID = new JTextField();
 		ID.setVisible(false);
-		ID.setBounds(452, 90, 116, 20);
+		ID.setBounds(691, 90, 116, 20);
 		frmCollectinggeographicInformationApp.getContentPane().add(ID);
 		ID.setColumns(10);
 
@@ -1329,6 +1329,11 @@ public class gui extends JFrame implements ActionListener{
 										.addContainerGap())))
 				);
 		panel_4.setLayout(gl_panel_4);
+		
+		JPanel panel_6 = new JPanel();
+		panel_6.setBorder(new TitledBorder(null, "From DB", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_6.setBounds(95, 11, 126, 152);
+		frmCollectinggeographicInformationApp.getContentPane().add(panel_6);
 
 		menuBar = new JMenuBar();
 		frmCollectinggeographicInformationApp.setJMenuBar(menuBar);

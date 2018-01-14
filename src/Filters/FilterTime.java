@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import Wifi.WiFi;
+import weightedCenterPoint.Line_Algo2;
 /**
 * This class compare between 2 wifi by Time
 * @author Dor Levi, Yarden Mizrahi
@@ -36,6 +37,11 @@ public class FilterTime implements Filter {
 	@Override
 	public boolean isBelong(WiFi wifi) {
 			return (startTime.before(wifi.getTime()) && endTime.after(wifi.getTime()));
+	}
+	@Override
+	public boolean isBelongsql(Line_Algo2 wifi) {
+		return (startTime.before(wifi.getTime()) && endTime.after(wifi.getTime()));
+		
 	}
 	
 

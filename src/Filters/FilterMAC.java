@@ -1,5 +1,6 @@
 package Filters;
 import Wifi.WiFi;
+import weightedCenterPoint.Line_Algo2;
 
 /**
 * This class compare between 2 wifi by MAC address
@@ -20,6 +21,11 @@ public class FilterMAC implements Filter{
 	@Override
 	public boolean isBelong(WiFi wifi) {
 		return MAC.toUpperCase().equals(wifi.getMAC().toUpperCase());
+	}
+
+	@Override
+	public boolean isBelongsql(Line_Algo2 wifi) {
+		return false;
 	}
 	
 }
