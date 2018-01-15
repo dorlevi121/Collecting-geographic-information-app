@@ -50,14 +50,22 @@ import weightedCenterPoint.algo2Network;
 
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
+import java.awt.Dimension;
+
 import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+
+import java.awt.event.AdjustmentListener;
+import java.awt.event.AdjustmentEvent;
 
 public class gui extends JFrame implements ActionListener{
 
 	private GPSPoint _point;
 	private String userMAC1, userSignal1, userMAC2, userSignal2, userMAC3, userSignal;
+	private String IP,URL,User,Table,Password;
 	private JTextField btnBrowserCombFile;
 	private String path, startTime, endTime, IDinfo, MAC;
 	private JFrame frmCollectinggeographicInformationApp;
@@ -118,6 +126,15 @@ public class gui extends JFrame implements ActionListener{
 	private JTextField signal1;
 	private JTextField signal2;
 	private JTextField signal3;
+	private JPanel panel_6;
+	private JTextField IPtext;
+	private JTextField URLtext;
+	private JTextField tableText;
+	private JTextField passwordText;
+	private JTextField userText;
+	private JScrollBar scrollBar;
+	private JScrollBar scrollBar_1;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Launch the application.
@@ -295,9 +312,40 @@ public class gui extends JFrame implements ActionListener{
 			}
 		});
 
+		///////////////Data Base ////////////////////
+		
+		IPtext.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				IP = IPtext.getText();
+			}
+		});
 
-
-		//Run button 
+		URLtext.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				URL = URLtext.getText();
+			}
+		});
+		
+		tableText.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Table = tableText.getText();
+			}
+		});
+		
+		passwordText.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Password = passwordText.getText();
+			}
+		});
+		
+		userText.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				User = userText.getText();
+			}
+		});
+		
+		////////////////////Run button ////////////////////
+		
 		btnRun.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -928,7 +976,7 @@ public class gui extends JFrame implements ActionListener{
 
 		//filters panel
 		panel = new JPanel();
-		panel.setBounds(251, 11, 116, 146);
+		panel.setBounds(286, 11, 116, 160);
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Filters", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 
 		gpsBox = new JCheckBox("GPS");
@@ -948,31 +996,38 @@ public class gui extends JFrame implements ActionListener{
 
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-				gl_panel.createParallelGroup(Alignment.TRAILING)
+			gl_panel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel.createSequentialGroup()
-						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(gpsBox)
-								.addComponent(idBox)
-								.addComponent(timeBox)
-								.addGroup(gl_panel.createSequentialGroup()
-										.addGap(19)
-										.addComponent(btnRun)))
-						.addContainerGap(52, Short.MAX_VALUE))
-				);
-		gl_panel.setVerticalGroup(
-				gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(gpsBox)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(timeBox)
-						.addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(idBox)
-						.addGap(18)
-						.addComponent(btnRun)
-						.addGap(13))
-				);
+						.addComponent(timeBox)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(19)
+							.addComponent(btnRun, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(26, Short.MAX_VALUE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(gpsBox)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(timeBox)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(idBox)
+					.addGap(18)
+					.addComponent(btnRun, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+					.addGap(19))
+		);
 		panel.setLayout(gl_panel);
 		frmCollectinggeographicInformationApp.getContentPane().setLayout(null);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(807, 152, 17, 260);
+		frmCollectinggeographicInformationApp.getContentPane().add(scrollPane);
+		
+		scrollBar_1 = new JScrollBar();
+		scrollPane.setViewportView(scrollBar_1);
 		frmCollectinggeographicInformationApp.getContentPane().add(panel);
 
 		//gps jump box
@@ -1040,7 +1095,7 @@ public class gui extends JFrame implements ActionListener{
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Save as", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_1.setBounds(10, 11, 75, 146);
+		panel_1.setBounds(10, 11, 75, 160);
 		frmCollectinggeographicInformationApp.getContentPane().add(panel_1);
 
 		kmlButton = new JRadioButton(".kml");
@@ -1070,10 +1125,12 @@ public class gui extends JFrame implements ActionListener{
 		panel_1.setLayout(gl_panel_1);
 
 		whiteTextBox = new JTextPane();
-		whiteTextBox.setBackground(SystemColor.menu);
-		whiteTextBox.setBounds(10, 324, 614, 35);
+
+		whiteTextBox.setBackground(SystemColor.controlLtHighlight);
+		whiteTextBox.setBounds(613, 152, 211, 260);
 		frmCollectinggeographicInformationApp.getContentPane().add(whiteTextBox);
 
+		
 		txtpnStartTime = new JTextPane();
 		txtpnStartTime.setFont(new Font("Arial", Font.BOLD, 11));
 		txtpnStartTime.setVisible(false);
@@ -1118,7 +1175,7 @@ public class gui extends JFrame implements ActionListener{
 
 		panel_3 = new JPanel();
 		panel_3.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "algo 1", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_3.setBounds(10, 168, 213, 152);
+		panel_3.setBounds(10, 263, 213, 152);
 		frmCollectinggeographicInformationApp.getContentPane().add(panel_3);
 		panel_3.setLayout(null);
 
@@ -1186,7 +1243,7 @@ public class gui extends JFrame implements ActionListener{
 
 		panel_5 = new JPanel();
 		panel_5.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "algo 2", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_5.setBounds(223, 168, 386, 152);
+		panel_5.setBounds(223, 263, 386, 152);
 		frmCollectinggeographicInformationApp.getContentPane().add(panel_5);
 		panel_5.setLayout(null);
 
@@ -1330,11 +1387,115 @@ public class gui extends JFrame implements ActionListener{
 				);
 		panel_4.setLayout(gl_panel_4);
 		
-		JPanel panel_6 = new JPanel();
+		panel_6 = new JPanel();
 		panel_6.setBorder(new TitledBorder(null, "From DB", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_6.setBounds(95, 11, 126, 152);
+		panel_6.setBounds(95, 11, 181, 160);
 		frmCollectinggeographicInformationApp.getContentPane().add(panel_6);
+		
+		JTextPane txtpnIp = new JTextPane();
+		txtpnIp.setFont(new Font("Arial", Font.BOLD, 11));
+		txtpnIp.setBackground(SystemColor.menu);
+		txtpnIp.setText("IP:");
+		
+		JTextPane txtpnUrl = new JTextPane();
+		txtpnUrl.setFont(new Font("Arial", Font.BOLD, 11));
+		txtpnUrl.setBackground(SystemColor.menu);
+		txtpnUrl.setText("URL:");
+		
+		JTextPane txtpnUser = new JTextPane();
+		txtpnUser.setBackground(SystemColor.menu);
+		txtpnUser.setFont(new Font("Arial", Font.BOLD, 11));
+		txtpnUser.setText("User:");
+		
+		JTextPane txtpnPassword = new JTextPane();
+		txtpnPassword.setBackground(SystemColor.menu);
+		txtpnPassword.setFont(new Font("Arial", Font.BOLD, 11));
+		txtpnPassword.setText("Password:");
+		
+		JTextPane txtpnTable = new JTextPane();
+		txtpnTable.setFont(new Font("Arial", Font.BOLD, 11));
+		txtpnTable.setBackground(SystemColor.menu);
+		txtpnTable.setText("Table:");
+		
+		IPtext = new JTextField();
 
+		IPtext.setColumns(10);
+		
+		URLtext = new JTextField();
+
+		URLtext.setColumns(10);
+		
+		tableText = new JTextField();
+
+		tableText.setColumns(10);
+		
+		passwordText = new JTextField();
+
+		passwordText.setColumns(10);
+		
+		userText = new JTextField();
+
+		userText.setColumns(10);
+		GroupLayout gl_panel_6 = new GroupLayout(panel_6);
+		gl_panel_6.setHorizontalGroup(
+			gl_panel_6.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_6.createSequentialGroup()
+					.addGroup(gl_panel_6.createParallelGroup(Alignment.LEADING)
+						.addGroup(Alignment.TRAILING, gl_panel_6.createSequentialGroup()
+							.addComponent(txtpnTable, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+							.addComponent(tableText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(Alignment.TRAILING, gl_panel_6.createSequentialGroup()
+							.addGroup(gl_panel_6.createParallelGroup(Alignment.LEADING)
+								.addComponent(txtpnIp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtpnUrl, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+							.addGroup(gl_panel_6.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(URLtext)
+								.addComponent(IPtext)))
+						.addGroup(Alignment.TRAILING, gl_panel_6.createSequentialGroup()
+							.addComponent(txtpnPassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(8)
+							.addComponent(passwordText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel_6.createSequentialGroup()
+							.addComponent(txtpnUser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+							.addComponent(userText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap())
+		);
+		gl_panel_6.setVerticalGroup(
+			gl_panel_6.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel_6.createSequentialGroup()
+					.addGroup(gl_panel_6.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_panel_6.createSequentialGroup()
+							.addComponent(txtpnIp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(txtpnUrl, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(txtpnUser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel_6.createSequentialGroup()
+							.addComponent(IPtext, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(URLtext, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(userText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGap(6)
+					.addGroup(gl_panel_6.createParallelGroup(Alignment.TRAILING)
+						.addComponent(txtpnPassword, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(passwordText, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+					.addGroup(gl_panel_6.createParallelGroup(Alignment.LEADING)
+						.addComponent(tableText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtpnTable, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
+		
+	
+		 
+		panel_6.setLayout(gl_panel_6);
+		
+
+		
 		menuBar = new JMenuBar();
 		frmCollectinggeographicInformationApp.setJMenuBar(menuBar);
 
