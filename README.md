@@ -75,10 +75,16 @@ This function write the ArrayList to CSV file by the format(ColumnNamesList)
 
 ### weightedCenterPoint:
 • Algo_2Function: This class represents functions that read comb CSV and no GPS CSV, calculate.
+
 • algo1:This class represents functions that read comb CSV.
+
 • Algo2_line:  This class represents an object of algo2 line.
+
 • algo2Network:This class defines for every WIFI network that was scanned by the wigleWifi app it's 2 unique elements.
+
 • Calculate_Algo2:This class represents an object of Location and PI for Algo2.
+
 • Line_Algo2:This class represents an object of the final line in the csv .
+
 • Parameters:this class represents all the constants Parameters.
 
