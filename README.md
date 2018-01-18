@@ -85,6 +85,5 @@ This function write the ArrayList to CSV file by the format(ColumnNamesList)
 • Calculate_Algo2:This class represents an object of Location and PI for Algo2.
 
 • Line_Algo2:This class represents an object of the final line in the csv .
-
 • Parameters:this class represents all the constants Parameters.
 
