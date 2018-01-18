@@ -1041,7 +1041,7 @@ public class gui extends JFrame implements ActionListener{
 
 		//filters panel
 		panel = new JPanel();
-		panel.setBounds(299, 11, 116, 160);
+		panel.setBounds(311, 11, 116, 160);
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Filters", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 
 		gpsBox = new JCheckBox("GPS");
@@ -1454,7 +1454,7 @@ public class gui extends JFrame implements ActionListener{
 		
 		panel_6 = new JPanel();
 		panel_6.setBorder(new TitledBorder(null, "From DB", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_6.setBounds(95, 11, 181, 160);
+		panel_6.setBounds(95, 11, 206, 160);
 		frmCollectinggeographicInformationApp.getContentPane().add(panel_6);
 		
 		JTextPane txtpnIp = new JTextPane();
