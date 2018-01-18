@@ -50,11 +50,11 @@ This function write the ArrayList to CSV file by the format(ColumnNamesList)
 # MySQL.
 
 ### Wifi:
-# WiFi:
+### WiFi:
 This class make object wifi.
 
 ### Filters:
-# Filter:Interface Filter
+#### Filter:Interface Filter
 # FilterGPS 	
 This class compare between 2 wifi by GPS
 # FilterID 	
@@ -68,7 +68,7 @@ This class compare between 2 wifi by SSID
 # FilterTime 	
 This class compare between 2 wifi by Time
 
-## KML:
+### KML:
 # Kml: responsible of writing the final kml file .
 •	makeKML: creating the kml and sending it to directory.
 
