@@ -19,7 +19,7 @@ In this window, you will be faced many possibilities:
 • Different ways to filter the information: by location ,by time and by ID. And in each filter you have to enter the information he demands(You can see the correct syntax that the filter asks for if you place the mouse on the filter itself).
 • Implements algorithm number 1 and algorithm number 2;
 
-### Project:
+## Project:
 
 ### CSV:
 #### makeCSV: unifies the CSV files and prints them into an ArrayList
