@@ -15,21 +15,25 @@ Please Make sure you have SQL Workbench and eclipce installed on your computer.
 ## Installing
 At the second you click on the "Run" butten, a window will pop up in front of you.
 In this window, you will be faced many possibilities:
+
 • Receive information: From a folder or a specific file.
+
 • Different ways to filter the information: by location ,by time and by ID. And in each filter you have to enter the information he demands(You can see the correct syntax that the filter asks for if you place the mouse on the filter itself).
+
 • Implements algorithm number 1 and algorithm number 2;
 
 ## Project:
 
 ### CSV:
 •makeCSV: unifies the CSV files and prints them into an ArrayList
-• getAllcsvFileListFromFolder: 
-This function make list with all the CSV path
-• readFilesAndAddToUnionList:
-This function unifies all CSV files to the ArrayList
+
+• getAllcsvFileListFromFolder: This function make list with all the CSV path
+
+• readFilesAndAddToUnionList: This function unifies all CSV files to the ArrayList.
+
 • writeListToCSVFile: This function write the ArrayList to CSV file by the format(ColumnNamesList)
-• writeListToCSVFile2:
-This function write the ArrayList to CSV file by the format(ColumnNamesList)
+
+• writeListToCSVFile2: This function write the ArrayList to CSV file by the format(ColumnNamesList)
 
 ### Wifi:
 • WiFi: Make object wifi. 
@@ -39,9 +43,13 @@ This function write the ArrayList to CSV file by the format(ColumnNamesList)
 
 ### Tests:
 • Test_algo2Network.
+
 • Test_GPSPoint.
+
 • Test_Line_Algo2.
+
 • Test_Parameters.
+
 • Test_Calculate_Algo2.
 
 ### Main:
@@ -73,10 +81,12 @@ This function write the ArrayList to CSV file by the format(ColumnNamesList)
 
 ### KML:
 • Kml: responsible of writing the final kml file .
+
 •	makeKML: creating the kml and sending it to directory.
 
 ### GUI:
 • gui
+
 • clickFilter
 
 ### weightedCenterPoint:
