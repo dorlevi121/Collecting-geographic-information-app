@@ -1,0 +1,43 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+repositories {     mavenCentral()   }
+dependencies {     implementation 'org.xerial:sqlite-jdbc:+'   }
+// https://mvnrepository.com/artifact/de.micromata.jak/JavaAPIforKml
+dependencies{
+	compile group: 'de.micromata.jak', name: 'JavaAPIforKml', version: '2.+'
+}
+// https://mvnrepository.com/artifact/com.jgoodies/jgoodies-forms
+dependencies{
+	compile group: 'com.jgoodies', name: 'jgoodies-forms', version: '1.+'
+}
+// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+dependencies{
+	implementation group: 'mysql', name: 'mysql-connector-java', version: '5.+'
+}
+// https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
+dependencies{
+	compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.+'
+}
+// https://mvnrepository.com/artifact/com.miglayout/miglayout-swing
+dependencies{
+	compile group: 'com.miglayout', name: 'miglayout-swing', version: '5.+'
+}
+dependencies{
+// https://mvnrepository.com/artifact/org.apache.geronimo.specs/geronimo-activation_1.1_spec
+compile group: 'org.apache.geronimo.specs', name: 'geronimo-activation_1.1_spec', version: '1.+'
+}
+
+//Make executable jar file
+//https://stackoverflow.com/questions/21721119/creating-runnable-jar-with-gradle
+jar {
+    manifest {
+        attributes 'Main-Class': 'src.main.java.GUIPack.Home'
+    }
+}
+//Create javadoc
+//https://docs.gradle.org/current/dsl/org.gradle.api.tasks.javadoc.Javadoc.html
+task myJavadocs(type: Javadoc) {
+  source = sourceSets.main.allJava
+}
+build.finalizedBy(myJavadocs)
