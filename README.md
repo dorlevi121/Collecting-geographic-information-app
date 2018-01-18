@@ -22,7 +22,7 @@ In this window, you will be faced many possibilities:
 ## Project:
 
 ### CSV:
-#### makeCSV: unifies the CSV files and prints them into an ArrayList
+•makeCSV: unifies the CSV files and prints them into an ArrayList
 • getAllcsvFileListFromFolder: 
 This function make list with all the CSV path
 • readFilesAndAddToUnionList:
