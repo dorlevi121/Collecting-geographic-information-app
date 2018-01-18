@@ -1,24 +1,28 @@
 # Collecting-geographic-information-app
 This program enables geographic information collection and production of insights
 and From this information the program display the information in graphical tools.
+
 ## Contributors
 Yarden Mizrahi - 311332183
 Dor Levi - 203288139
 
 ## Prerequisites
 Please Make sure you have SQL Workbench and eclipce installed on your computer. 
+
 ## Getting Started
  Simply press at the "Run" button in eclipce.
+
 ## Installing
 At the second you click on the "Run" butten, a window will pop up in front of you.
 In this window, you will be faced many possibilities:
 • Receive information: From a folder or a specific file.
 • Different ways to filter the information: by location ,by time and by ID. And in each filter you have to enter the information he demands(You can see the correct syntax that the filter asks for if you place the mouse on the filter itself).
 • Implements algorithm number 1 and algorithm number 2;
+
 ### Project:
 
 ### CSV:
-## makeCSV: unifies the CSV files and prints them into an ArrayList
+#### makeCSV: unifies the CSV files and prints them into an ArrayList
 • getAllcsvFileListFromFolder: 
 This function make list with all the CSV path
 • readFilesAndAddToUnionList:
@@ -41,35 +45,28 @@ This function write the ArrayList to CSV file by the format(ColumnNamesList)
 • Test_Calculate_Algo2.
 
 ### Main:
-# main.
+• main.
 
 ### MainWatch:
-# watch.
+• watch.
 
 ### SQL:
-# MySQL.
+• MySQL.
 
 ### Wifi:
-### WiFi:
-This class make object wifi.
+• WiFi: This class make object wifi.
 
 ### Filters:
-#### Filter:Interface Filter
-# FilterGPS 	
-This class compare between 2 wifi by GPS
-# FilterID 	
-This class compare between 2 wifi by ID
-# filterList 	
-This class compare between 2 wifi by filter
-# FilterMAC 	
-This class compare between 2 wifi by MAC address
-# FilterSSID 	
-This class compare between 2 wifi by SSID
-# FilterTime 	
-This class compare between 2 wifi by Time
+•Filter: Interface Filter
+• FilterGPS: This class compare between 2 wifi by GPS
+• FilterID: This class compare between 2 wifi by ID
+• filterList: This class compare between 2 wifi by filter
+• FilterMAC: This class compare between 2 wifi by MAC address
+• FilterSSID: This class compare between 2 wifi by SSID
+• FilterTime: This class compare between 2 wifi by Time
 
 ### KML:
-# Kml: responsible of writing the final kml file .
+• Kml: responsible of writing the final kml file .
 •	makeKML: creating the kml and sending it to directory.
 
 ### GUI:
