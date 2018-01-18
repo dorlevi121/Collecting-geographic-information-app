@@ -58,11 +58,17 @@ This function write the ArrayList to CSV file by the format(ColumnNamesList)
 
 ### Filters:
 •Filter: Interface Filter
+
 • FilterGPS: This class compare between 2 wifi by GPS
+
 • FilterID: This class compare between 2 wifi by ID
+
 • filterList: This class compare between 2 wifi by filter
+
 • FilterMAC: This class compare between 2 wifi by MAC address
+
 • FilterSSID: This class compare between 2 wifi by SSID
+
 • FilterTime: This class compare between 2 wifi by Time
 
 ### KML:
@@ -85,5 +91,6 @@ This function write the ArrayList to CSV file by the format(ColumnNamesList)
 • Calculate_Algo2:This class represents an object of Location and PI for Algo2.
 
 • Line_Algo2:This class represents an object of the final line in the csv .
+
 • Parameters:this class represents all the constants Parameters.
 
