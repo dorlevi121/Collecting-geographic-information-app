@@ -19,44 +19,41 @@ In this window, you will be faced many possibilities:
 
 ### CSV:
 ## makeCSV: unifies the CSV files and prints them into an ArrayList
-# getAllcsvFileListFromFolder: 
+• getAllcsvFileListFromFolder: 
 This function make list with all the CSV path
-# readFilesAndAddToUnionList:
+• readFilesAndAddToUnionList:
 This function unifies all CSV files to the ArrayList
-# writeListToCSVFile:
+• writeListToCSVFile: This function write the ArrayList to CSV file by the format(ColumnNamesList)
+• writeListToCSVFile2:
 This function write the ArrayList to CSV file by the format(ColumnNamesList)
-# writeListToCSVFile2:
-This function write the ArrayList to CSV file by the format(ColumnNamesList)
-## Wifi:
-# WiFi: Make object wifi. 
 
-## GPSPoints:
-# GPSPoint: An Object that represent the wifi GPS data.
+### Wifi:
+• WiFi: Make object wifi. 
 
-## Tests:
-# Test_algo2Network.
-# Test_GPSPoint.
-# Test_Line_Algo2.
-# Test_Parameters.
-# Test_Calculate_Algo2.
+### GPSPoints:
+• GPSPoint: An Object that represent the wifi GPS data.
 
-## Main:
+### Tests:
+• Test_algo2Network.
+• Test_GPSPoint.
+• Test_Line_Algo2.
+• Test_Parameters.
+• Test_Calculate_Algo2.
+
+### Main:
 # main.
 
-## MainWatch:
+### MainWatch:
 # watch.
 
-## SQL:
+### SQL:
 # MySQL.
 
-## org.eclipse.wb.swing:
-# FocusTraversalOnArray.
-
-## Wifi:
+### Wifi:
 # WiFi:
 This class make object wifi.
 
-## Filters:
+### Filters:
 # Filter:Interface Filter
 # FilterGPS 	
 This class compare between 2 wifi by GPS
@@ -75,15 +72,16 @@ This class compare between 2 wifi by Time
 # Kml: responsible of writing the final kml file .
 •	makeKML: creating the kml and sending it to directory.
 
-## GUI:
-# gui
-# clickFilter
-## weightedCenterPoint:
-# Algo_2Function: This class represents functions that read comb CSV and no GPS CSV, calculate.
-# algo1:This class represents functions that read comb CSV.
-# Algo2_line:  This class represents an object of algo2 line.
-# algo2Network:This class defines for every WIFI network that was scanned by the wigleWifi app it's 2 unique elements.
-# Calculate_Algo2:This class represents an object of Location and PI for Algo2.
-# Line_Algo2:This class represents an object of the final line in the csv .
-# Parameters:this class represents all the constants Parameters.
+### GUI:
+• gui
+• clickFilter
+
+### weightedCenterPoint:
+• Algo_2Function: This class represents functions that read comb CSV and no GPS CSV, calculate.
+• algo1:This class represents functions that read comb CSV.
+• Algo2_line:  This class represents an object of algo2 line.
+• algo2Network:This class defines for every WIFI network that was scanned by the wigleWifi app it's 2 unique elements.
+• Calculate_Algo2:This class represents an object of Location and PI for Algo2.
+• Line_Algo2:This class represents an object of the final line in the csv .
+• Parameters:this class represents all the constants Parameters.
 
