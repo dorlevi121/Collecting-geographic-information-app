@@ -9,6 +9,8 @@ import java.util.Map;
 
 public class watch implements Runnable{
 	
+	// source code from: http://www.logicbig.com/tutorials/core-java-tutorial/java-nio/java-watch-service/
+	
    private static Map<WatchKey, Path> keyPathMap = new HashMap<>();
 static Path path;
    
