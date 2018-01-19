@@ -27,7 +27,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class MySQL {
-
+/// This code from Boaz's GitHub
+	
 	private static String _ip = "5.29.193.52";
 	private static String _url = "jdbc:mysql://5.29.193.52:3306/oop_course_ariel";
 	private static String _user = "oop1";
