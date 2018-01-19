@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.2" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="test.java.Tests.Test_Parameters" project="Collecting-geographic-information-app" 
+    file="/Collecting-geographic-information-app/src/test/java/Tests/Test_Parameters.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="333" width="151" x="233" y="-67"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="test.java.Tests.Test_Calculate_Algo2" 
+    project="Collecting-geographic-information-app" 
+    file="/Collecting-geographic-information-app/src/test/java/Tests/Test_Calculate_Algo2.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="147" x="424" y="-67"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="test.java.Tests.Test_GPSPoint" project="Collecting-geographic-information-app" 
+    file="/Collecting-geographic-information-app/src/test/java/Tests/Test_GPSPoint.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="114" x="611" y="-67"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="test.java.Tests.Test_algo2Network" project="Collecting-geographic-information-app" 
+    file="/Collecting-geographic-information-app/src/test/java/Tests/Test_algo2Network.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="134" x="765" y="-67"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="test.java.Tests.Test_Line_Algo2" project="Collecting-geographic-information-app" 
+    file="/Collecting-geographic-information-app/src/test/java/Tests/Test_Line_Algo2.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="369" width="192" x="939" y="-67"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
