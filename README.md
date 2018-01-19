@@ -56,10 +56,10 @@ In this window, you will be faced many possibilities:
 • main.
 
 ### MainWatch:
-• watch.
+• watch: 
 
 ### SQL:
-• MySQL.
+• MySQL: Writing to database from sql server.
 
 ### Wifi:
 • WiFi: This class make object wifi.
