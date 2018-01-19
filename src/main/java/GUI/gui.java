@@ -699,40 +699,40 @@ public class gui extends JFrame implements ActionListener{
 				
 				///////////////////////// MySQL ///////////////////////////////
 				
-				else if(csvButton.isSelected() && !gpsBox.isSelected() && !gpsBox.isSelected() && !timeBox.isSelected() && 
+				else if(!gpsBox.isSelected() && !idBox.isSelected() && !timeBox.isSelected() && 
 						!kmlButton.isSelected()){
 					List<Line_Algo2> _line1 =	MySQL.test_101(IP, URL, User, Password, Table);
 					String userDir = System.getProperty("user.home");
-					Line_Algo2.toCsv(_line1, userDir +"/Desktop/sqlDB.csv");
+					Line_Algo2.toCsv(_line1, userDir +"/Desktop");
 
 				}
 				
 				/////////////GPS Filter
 				
-				else if(gpsBox.isSelected() && csvButton.isSelected()
-						&& !idBox.isSelected() && !timeBox.isSelected()){
+				else if(gpsBox.isSelected() && 
+						 !idBox.isSelected() && !timeBox.isSelected()){
 					List<Line_Algo2> _line1 =	MySQL.test_101(IP, URL, User, Password, Table);
 
 					filter = new FilterGPS(StartLon, StartLat, EndLon,  EndLat);
 					List<Line_Algo2> filteredList = filterList.filterList1(_line1,filter);
 					String userDir = System.getProperty("user.home");
-					Line_Algo2.toCsv(filteredList, userDir +"/Desktop/sqlDB.csv");
+					Line_Algo2.toCsv(filteredList, userDir +"/Desktop");
 				}
 				
 				// filter by time
-				else if(timeBox.isSelected() &&csvButton.isSelected()
+				else if(timeBox.isSelected()
 						&& !idBox.isSelected() && !gpsBox.isSelected() ){
 					List<Line_Algo2> _line1 =	MySQL.test_101(IP, URL, User, Password, Table);
 
 					filter = new FilterTime(startTime, endTime);//the new filter 
 					List<Line_Algo2> filteredList = filterList.filterList1(_line1,filter);
 					String userDir = System.getProperty("user.home");
-					Line_Algo2.toCsv(filteredList, userDir +"/Desktop/sqlDB.csv");
+					Line_Algo2.toCsv(filteredList, userDir +"/Desktop");
 					
 				}
 				
 				// filter by ID
-				else if(idBox.isSelected() &&csvButton.isSelected()
+				else if(idBox.isSelected() 
 						&& !timeBox.isSelected() && !gpsBox.isSelected()){
 					
 					List<Line_Algo2> _line1 =	MySQL.test_101(IP, URL, User, Password, Table);
@@ -740,11 +740,11 @@ public class gui extends JFrame implements ActionListener{
 					filter = new FilterID(IDinfo);
 					List<Line_Algo2> filteredList = filterList.filterList1(_line1,filter);
 					String userDir = System.getProperty("user.home");
-					Line_Algo2.toCsv(filteredList, userDir +"/Desktop/sqlDB.csv");
+					Line_Algo2.toCsv(filteredList, userDir +"/Desktop");
 				}
 				
 				//By GPS and time
-				else if(gpsBox.isSelected() && timeBox.isSelected() && csvButton.isSelected() && !idBox.isSelected()){
+				else if(gpsBox.isSelected() && timeBox.isSelected()  && !idBox.isSelected()){
 						List<Line_Algo2> _line1 =	MySQL.test_101(IP, URL, User, Password, Table);
 						filter = new FilterTime(startTime, endTime);//the new filter 
 					List<Line_Algo2> filteredList = filterList.filterList1(_line1,filter);
@@ -754,7 +754,7 @@ public class gui extends JFrame implements ActionListener{
 					
 					
 					String userDir = System.getProperty("user.home");
-					Line_Algo2.toCsv(filteredList1, userDir +"/Desktop/sqlDB.csv");
+					Line_Algo2.toCsv(filteredList1, userDir +"/Desktop");
 					
 				}
 
