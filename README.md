@@ -3,8 +3,8 @@ This program enables geographic information collection and production of insight
 and From this information the program display the information in graphical tools.
 
 ## Contributors
-Yarden Mizrahi - 311332183
-Dor Levi - 203288139
+Yarden Mizrahi 
+Dor Levi
 
 ## Prerequisites
 Please Make sure you have SQL Workbench and eclipce installed on your computer. 
